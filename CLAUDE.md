@@ -29,12 +29,14 @@
 ## Setup
 
 **Supabase Project** (manual setup required):
+
 - Create a Supabase project at https://supabase.com
 - Get project URL and anon key, store in `.env.local` (never commit)
 - Copy values to `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY` in `.env.local`
 - Database migrations run in Stage 03
 
 **Vercel Project** (automatic via GitHub Actions):
+
 - Vercel deployment auto-configured in CI/CD pipeline
 - Set Vercel env vars in GitHub Actions: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
 
@@ -75,6 +77,7 @@ orchestra-sheets/
 ## Enterprise Standards
 
 All code adheres to:
+
 - OWASP Top 10 Web (A01, A02, A03, A05, A07 priority)
 - OWASP ASVS Level 2 (V2, V3, V6, V8, V13)
 - WCAG 2.1 AA (all 50 success criteria)
