@@ -26,6 +26,18 @@
 - Commit and push after every stage
 - Follow D2R skill execution protocol exactly
 
+## Setup
+
+**Supabase Project** (manual setup required):
+- Create a Supabase project at https://supabase.com
+- Get project URL and anon key, store in `.env.local` (never commit)
+- Copy values to `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY` in `.env.local`
+- Database migrations run in Stage 03
+
+**Vercel Project** (automatic via GitHub Actions):
+- Vercel deployment auto-configured in CI/CD pipeline
+- Set Vercel env vars in GitHub Actions: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+
 ## Directory Structure
 
 ```
