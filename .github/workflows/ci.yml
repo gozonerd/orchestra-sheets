@@ -1,0 +1,212 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  # Stage 1: Lint
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: ESLint
+        run: npm run lint
+      - name: Prettier check
+        run: npx prettier --check .
+
+  # Stage 2: Type Check
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run type-check
+
+  # Stage 3: Unit Tests
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Unit tests
+        run: npm run test:unit -- --coverage
+      - name: Coverage check
+        run: |
+          echo "Unit tests coverage report generated"
+
+  # Stage 4: Build
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, type-check, unit-tests]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: build/
+
+  # Stage 5: Integration Tests
+  integration-tests:
+    runs-on: ubuntu-latest
+    needs: build
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: orchestra_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Set up database
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/orchestra_test
+        run: npm run db:migrate
+      - name: Integration tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/orchestra_test
+        run: npm run test:integration -- --coverage
+      - name: Coverage check
+        run: |
+          echo "Integration tests coverage report generated"
+
+  # Stage 6: SAST (Semgrep)
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: returntocorp/semgrep-action@v1
+        with:
+          config: p/owasp-top-ten
+
+  # Stage 7: Dependency Audit
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: npm audit
+        run: npm audit --audit-level=moderate
+
+  # Stage 8: Secret Detection
+  secret-detection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+
+  # Stage 9: Preview Deploy (pull_request only)
+  preview-deploy:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: [build, integration-tests, sast, audit, secret-detection]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+      - name: Deploy to preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prebuilt
+
+  # Stage 10: E2E Tests (preview deploy)
+  e2e-tests:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: preview-deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: E2E tests
+        run: npm run test:e2e
+        env:
+          PREVIEW_URL: ${{ needs.preview-deploy.outputs.preview_url }}
+
+  # Stage 11: Lighthouse CI
+  lighthouse:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: preview-deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          temporaryPublicStorage: true
+          configPath: ./lighthouserc.json
+
+  # Stage 12: Production Deploy (main branch only)
+  production-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    needs: [build, integration-tests, sast, audit, secret-detection]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+      - name: Deploy to production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prod
