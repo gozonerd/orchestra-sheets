@@ -89,7 +89,6 @@
 
 <nav
 	class="flex h-full flex-col overflow-y-auto border-r border-gray-200 bg-white"
-	role="navigation"
 	aria-label="Folder navigation"
 >
 	<div class="p-4">

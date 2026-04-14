@@ -64,12 +64,3 @@ export async function GET(event: RequestEvent) {
 		return error(500, 'Failed to search prompts');
 	}
 }
-
-// Helper function for OR logic
-function or(...conditions: any[]): any {
-	if (conditions.length === 0) return null;
-	if (conditions.length === 1) return conditions[0];
-
-	// Since we don't have a built-in OR, we'll handle this in the query building
-	return conditions[0];
-}

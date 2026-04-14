@@ -85,7 +85,7 @@
 		role="presentation"
 		onclick={() => onClose?.()}
 		onkeydown={handleKeyDown}
-	/>
+	></div>
 
 	<!-- Modal dialog -->
 	<div
@@ -162,7 +162,7 @@
 								aria-label="Select color {color}"
 								onclick={() => (newTagColor = color)}
 								title={color}
-							/>
+							></button>
 						{/each}
 					</div>
 
@@ -262,7 +262,7 @@
 											class="h-6 w-6 rounded-full border border-gray-300"
 											style="background-color: {tag.color}"
 											aria-label="Tag color: {tag.color}"
-										/>
+										></div>
 										<div>
 											<p class="text-sm font-medium text-gray-900">{tag.name}</p>
 											<p class="text-xs text-gray-500">{tag.color}</p>
