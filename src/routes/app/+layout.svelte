@@ -238,7 +238,7 @@
 <TagModal
 	isOpen={showTagModal}
 	{tags}
-	{selectedTagIds}
+	selectedTags={selectedTagIds}
 	onClose={() => (showTagModal = false)}
 	onCreate={handleCreateTag}
 	onUpdate={handleUpdateTag}

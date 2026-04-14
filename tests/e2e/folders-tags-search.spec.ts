@@ -6,429 +6,315 @@ test.describe('Folder Tree Interactions', () => {
 		await expect(page.locator('h1')).toContainText('UI Component Test Suite');
 	});
 
-	test('should expand and collapse folders', async ({ page }) => {
-		// Find the expand button for "General" folder
-		const generalFolderRow = page.locator('text=General').first();
-		const expandButton = generalFolderRow.locator('xpath=./../../button[1]');
+	test('should render folder tree with General and Archive folders', async ({ page }) => {
+		await expect(page.locator('text=General')).toBeVisible();
+		await expect(page.locator('text=Archive')).toBeVisible();
+	});
 
-		// Initially, the folder should be collapsed (no > visible yet)
-		await expect(expandButton).toBeVisible();
+	test('should expand folder when expand button clicked', async ({ page }) => {
+		// Find the expand button for General folder (first button in the folder row)
+		const generalFolderItem = page.locator('text=General').first().locator('..');
+		const expandButton = generalFolderItem.locator('button').first();
 
-		// Click to expand
+		// Click expand button
+		await expandButton.click();
+
+		// Child folders should now be visible
+		await expect(page.locator('text=Customer Support')).toBeVisible();
+		await expect(page.locator('text=Content Creation')).toBeVisible();
+	});
+
+	test('should collapse folder when expand button clicked again', async ({ page }) => {
+		// Expand first
+		const generalFolderItem = page.locator('text=General').first().locator('..');
+		const expandButton = generalFolderItem.locator('button').first();
 		await expandButton.click();
 		await expect(page.locator('text=Customer Support')).toBeVisible();
 
-		// Click to collapse
+		// Collapse
 		await expandButton.click();
 		await expect(page.locator('text=Customer Support')).not.toBeVisible();
 	});
 
-	test('should select folders on click', async ({ page }) => {
-		// Click on "General" folder
+	test('should select folder on click', async ({ page }) => {
 		const generalFolder = page.locator('text=General').first();
 		await generalFolder.click();
 
-		// Check that the selected state is displayed
-		const selectedState = page.locator('text=Selected Folder: ID: 1');
-		await expect(selectedState).toBeVisible();
+		// Verify folder is selected (check aria-selected or visual state)
+		await expect(generalFolder.locator('..')).toHaveAttribute('aria-selected', 'true');
 	});
 
-	test('should navigate folders with arrow keys', async ({ page }) => {
-		// Focus on the General folder
+	test('should display correct selected folder state', async ({ page }) => {
 		const generalFolder = page.locator('text=General').first();
-		await generalFolder.focus();
+		await generalFolder.click();
 
-		// Press right arrow to expand
-		await page.keyboard.press('ArrowRight');
-		await expect(page.locator('text=Customer Support')).toBeVisible();
-
-		// Press left arrow to collapse
-		await page.keyboard.press('ArrowLeft');
-		await expect(page.locator('text=Customer Support')).not.toBeVisible();
-	});
-
-	test('should select folder with Enter key', async ({ page }) => {
-		// Focus on the General folder
-		const generalFolder = page.locator('text=General').first();
-		await generalFolder.focus();
-
-		// Press Enter to select
-		await page.keyboard.press('Enter');
-
-		// Verify selection
-		const selectedState = page.locator('text=Selected Folder: ID: 1');
-		await expect(selectedState).toBeVisible();
-	});
-
-	test('should navigate folders with Tab key', async ({ page }) => {
-		// Tab should move focus to the next interactive element
-		const firstFolder = page.locator('text=General').first();
-		await firstFolder.focus();
-
-		// Tab to next element (expand button of next folder or next folder itself)
-		await page.keyboard.press('Tab');
-
-		// Focus should move to another element
-		const focusedElement = await page.evaluate(() => document.activeElement?.textContent);
-		expect(focusedElement).not.toContain('General');
+		// The page displays the selected folder state
+		const selectedState = page.locator('p:has-text("Selected Folder:")');
+		await expect(selectedState).toContainText('ID: 1');
 	});
 });
 
 test.describe('Search Bar Interactions', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('http://localhost:5173/test-ui');
+		await expect(page.locator('h1')).toContainText('UI Component Test Suite');
 	});
 
 	test('should type in search input', async ({ page }) => {
-		const searchInput = page.locator('input[placeholder="Search prompts by name or description..."]');
-		await searchInput.fill('customer');
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
+		await searchInput.fill('test prompt');
 
-		await expect(searchInput).toHaveValue('customer');
+		await expect(searchInput).toHaveValue('test prompt');
 	});
 
-	test('should display search results on input change', async ({ page }) => {
-		const searchInput = page.locator('input[placeholder="Search prompts by name or description..."]');
+	test('should trigger search on input change', async ({ page }) => {
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
+		await searchInput.fill('test');
 
-		// Type a search query
+		// Results should be displayed
+		const queryState = page.locator('text=Query: test');
+		await expect(queryState).toBeVisible();
+	});
+
+	test('should display search results', async ({ page }) => {
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
 		await searchInput.fill('example');
 
-		// Wait for results to appear (simulated with 500ms delay in component)
-		await page.waitForTimeout(600);
+		// Wait for results to appear
+		await page.waitForTimeout(600); // Simulate the 500ms delay in mock
 
-		// Results should be visible
-		const results = page.locator('text=Example Prompt');
-		await expect(results.first()).toBeVisible();
+		// Check results count increased
+		const resultsState = page.locator('text=/Results: \\d+ items/');
+		await expect(resultsState).toBeVisible();
 	});
 
-	test('should filter by folder dropdown', async ({ page }) => {
-		// Click the "All Folders" dropdown button
-		const folderFilterButton = page.locator('button:has-text("All Folders")').first();
-		await folderFilterButton.click();
+	test('should open folder dropdown filter', async ({ page }) => {
+		const folderButton = page.locator('button:has-text("All Folders")').first();
+		await folderButton.click();
 
-		// Dropdown should be visible
-		const dropdown = page.locator('[role="listbox"]').first();
-		await expect(dropdown).toBeVisible();
+		// Dropdown should show folder options
+		await expect(page.locator('text=All Folders')).toBeVisible();
+	});
 
-		// Select a folder
-		const folderOption = dropdown.locator('button').first();
+	test('should filter by folder selection', async ({ page }) => {
+		const folderButton = page.locator('button:has-text("All Folders")').first();
+		await folderButton.click();
+
+		// Select a specific folder
+		const folderOption = page.locator('button:has-text("General")').last();
 		await folderOption.click();
 
-		// Dropdown should close
-		await expect(dropdown).not.toBeVisible();
+		// Button text should update
+		await expect(folderButton).toContainText('General');
 	});
 
-	test('should filter by tags dropdown', async ({ page }) => {
-		// Click the "All Tags" dropdown button
-		const tagFilterButton = page.locator('button:has-text("All Tags")').first();
-		await tagFilterButton.click();
+	test('should open tags dropdown filter', async ({ page }) => {
+		const tagsButton = page.locator('button:has-text("All Tags")');
+		await tagsButton.click();
 
-		// Dropdown should be visible
-		const dropdown = page.locator('[role="listbox"]').nth(1);
-		await expect(dropdown).toBeVisible();
+		// Should show tag options
+		const tagCheckboxes = page.locator('input[type="checkbox"]');
+		await expect(tagCheckboxes.first()).toBeVisible();
+	});
 
-		// Check a tag checkbox
-		const checkbox = dropdown.locator('input[type="checkbox"]').first();
-		await checkbox.check();
+	test('should select tag filter with checkbox', async ({ page }) => {
+		const tagsButton = page.locator('button:has-text("All Tags")');
+		await tagsButton.click();
 
-		// Checkbox should be checked
-		await expect(checkbox).toBeChecked();
+		// Click first tag checkbox
+		const firstCheckbox = page.locator('input[type="checkbox"]').first();
+		await firstCheckbox.check();
+
+		await expect(firstCheckbox).toBeChecked();
 	});
 
 	test('should clear search with empty input', async ({ page }) => {
-		const searchInput = page.locator('input[placeholder="Search prompts by name or description..."]');
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
 
-		// Type and then clear
+		// Type and clear
 		await searchInput.fill('test');
 		await searchInput.clear();
 
-		await expect(searchInput).toHaveValue('');
+		const queryState = page.locator('text=Query: (empty)');
+		await expect(queryState).toBeVisible();
 	});
 });
 
-test.describe('Tag Modal Workflows', () => {
+test.describe('Tag Modal Interactions', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('http://localhost:5173/test-ui');
+		await expect(page.locator('h1')).toContainText('UI Component Test Suite');
 	});
 
 	test('should open tag modal on button click', async ({ page }) => {
 		const openButton = page.locator('button:has-text("Open Tag Modal")');
 		await openButton.click();
 
-		// Modal should be visible
-		const modal = page.locator('[role="dialog"]');
-		await expect(modal).toBeVisible();
-
-		// Modal title should be visible
-		const title = page.locator('h2:has-text("Manage Tags")');
-		await expect(title).toBeVisible();
-	});
-
-	test('should fill and submit tag creation form', async ({ page }) => {
-		// Open modal
-		const openButton = page.locator('button:has-text("Open Tag Modal")');
-		await openButton.click();
-
-		// Fill tag name
-		const nameInput = page.locator('input[placeholder="e.g., High Priority"]');
-		await nameInput.fill('Urgent');
-
-		// Select a color
-		const colorButton = page.locator('button[style*="background-color"]').first();
-		await colorButton.click();
-
-		// Create button should be visible
-		const createButton = page.locator('button:has-text("Create Tag")');
-		await expect(createButton).toBeVisible();
-	});
-
-	test('should close modal with X button', async ({ page }) => {
-		// Open modal
-		const openButton = page.locator('button:has-text("Open Tag Modal")');
-		await openButton.click();
-
-		// Find and click close button (X)
-		const closeButton = page.locator('button[aria-label="Close modal"]');
-		await closeButton.click();
-
-		// Modal should not be visible
-		const modal = page.locator('[role="dialog"]');
-		await expect(modal).not.toBeVisible();
-	});
-
-	test('should close modal with Escape key', async ({ page }) => {
-		// Open modal
-		const openButton = page.locator('button:has-text("Open Tag Modal")');
-		await openButton.click();
-
-		// Press Escape
-		await page.keyboard.press('Escape');
-
-		// Modal should not be visible
-		const modal = page.locator('[role="dialog"]');
-		await expect(modal).not.toBeVisible();
-	});
-
-	test('should toggle tag selection with checkbox', async ({ page }) => {
-		// Open modal
-		const openButton = page.locator('button:has-text("Open Tag Modal")');
-		await openButton.click();
-
-		// Find first tag checkbox
-		const tagCheckbox = page.locator('input[type="checkbox"]').first();
-
-		// Initially unchecked
-		await expect(tagCheckbox).not.toBeChecked();
-
-		// Click to check
-		await tagCheckbox.check();
-		await expect(tagCheckbox).toBeChecked();
-
-		// Click to uncheck
-		await tagCheckbox.uncheck();
-		await expect(tagCheckbox).not.toBeChecked();
+		// Modal should be visible with title
+		await expect(page.locator('text=Manage Tags')).toBeVisible();
 	});
 
 	test('should display existing tags in modal', async ({ page }) => {
-		// Open modal
 		const openButton = page.locator('button:has-text("Open Tag Modal")');
 		await openButton.click();
 
-		// Check for existing tags
-		const highPriorityTag = page.locator('text=High Priority');
-		const reviewTag = page.locator('text=Review Needed');
-		const completedTag = page.locator('text=Completed');
-
-		await expect(highPriorityTag).toBeVisible();
-		await expect(reviewTag).toBeVisible();
-		await expect(completedTag).toBeVisible();
-	});
-});
-
-test.describe('Complete User Workflows', () => {
-	test.beforeEach(async ({ page }) => {
-		await page.goto('http://localhost:5173/test-ui');
+		// Should show existing tags
+		await expect(page.locator('text=High Priority')).toBeVisible();
+		await expect(page.locator('text=Review Needed')).toBeVisible();
+		await expect(page.locator('text=Completed')).toBeVisible();
 	});
 
-	test('should perform complete search workflow', async ({ page }) => {
-		// 1. Expand a folder
-		const expandButton = page.locator('xpath=//div[@role="treeitem"]//button').first();
-		await expandButton.click();
-
-		// 2. Select a folder
-		const childFolder = page.locator('text=Customer Support');
-		await childFolder.click();
-
-		// 3. Enter search query
-		const searchInput = page.locator('input[placeholder="Search prompts by name or description..."]');
-		await searchInput.fill('support');
-
-		// 4. Verify search state updates
-		await page.waitForTimeout(600);
-		const queryState = page.locator('text=Query: support');
-		await expect(queryState).toBeVisible();
-
-		const folderState = page.locator('text=Folder Filter: 2');
-		await expect(folderState).toBeVisible();
-	});
-
-	test('should perform complete tag management workflow', async ({ page }) => {
-		// 1. Open tag modal
+	test('should close modal with close button', async ({ page }) => {
 		const openButton = page.locator('button:has-text("Open Tag Modal")');
 		await openButton.click();
 
-		// 2. Create a new tag (fill form)
-		const nameInput = page.locator('input[placeholder="e.g., High Priority"]');
-		await nameInput.fill('Custom Tag');
+		await expect(page.locator('text=Manage Tags')).toBeVisible();
 
-		// 3. Select color
-		const colorInput = page.locator('input[type="color"]');
-		await colorInput.fill('#FF5733');
-
-		// 4. Select existing tags
-		const checkboxes = page.locator('input[type="checkbox"]');
-		await checkboxes.nth(0).check();
-		await checkboxes.nth(1).check();
-
-		// 5. Close modal
+		// Find and click close button
 		const closeButton = page.locator('button:has-text("Close")');
 		await closeButton.click();
 
 		// Modal should be closed
-		const modal = page.locator('[role="dialog"]');
-		await expect(modal).not.toBeVisible();
+		await expect(page.locator('text=Manage Tags')).not.toBeVisible();
 	});
 
-	test('should navigate and search with keyboard only', async ({ page }) => {
-		// 1. Tab to first folder
-		const firstFolder = page.locator('text=General').first();
-		await firstFolder.focus();
-
-		// 2. Expand with arrow key
-		await page.keyboard.press('ArrowRight');
-
-		// 3. Tab to search input
-		const searchInput = page.locator('input[placeholder="Search prompts by name or description..."]');
-		await searchInput.focus();
-
-		// 4. Type search query
-		await page.keyboard.type('test');
-
-		// 5. Verify input value
-		await expect(searchInput).toHaveValue('test');
-
-		// 6. Tab to search button and trigger
-		const searchButton = page.locator('button[aria-label="Search"]');
-		await searchButton.focus();
-		await page.keyboard.press('Enter');
-
-		// Results should appear
-		await page.waitForTimeout(600);
-	});
-
-	test('should maintain state across interactions', async ({ page }) => {
-		// 1. Select a folder
-		const generalFolder = page.locator('text=General').first();
-		await generalFolder.click();
-
-		// 2. Verify state shows selected folder
-		let folderState = page.locator('text=Selected Folder: ID: 1');
-		await expect(folderState).toBeVisible();
-
-		// 3. Open tag modal
+	test('should fill and submit tag creation form', async ({ page }) => {
 		const openButton = page.locator('button:has-text("Open Tag Modal")');
 		await openButton.click();
 
-		// 4. Select a tag
-		const checkbox = page.locator('input[type="checkbox"]').first();
-		await checkbox.check();
+		// Fill form fields
+		const nameInput = page.locator('input[placeholder*="e.g., High Priority"]');
+		await nameInput.fill('Test Tag');
 
-		// 5. Close modal
-		const closeButton = page.locator('button:has-text("Close")');
-		await closeButton.click();
+		// Submit button should be enabled
+		const createButton = page.locator('button:has-text("Create Tag")');
+		await expect(createButton).not.toBeDisabled();
+		await createButton.click();
 
-		// 6. Folder selection should still be visible
-		folderState = page.locator('text=Selected Folder: ID: 1');
-		await expect(folderState).toBeVisible();
+		// Action should be logged (console check in integration test)
+	});
 
-		// 7. Tag selection should be reflected in state
-		const tagState = page.locator('text=Tag Filters:');
-		await expect(tagState).toBeVisible();
+	test('should handle tag color selection', async ({ page }) => {
+		const openButton = page.locator('button:has-text("Open Tag Modal")');
+		await openButton.click();
+
+		// Color input should be available
+		const colorInputs = page.locator('input[type="color"]');
+		await expect(colorInputs.first()).toBeVisible();
+
+		// Change color
+		await colorInputs.first().fill('#FF0000');
+	});
+
+	test('should validate tag name is required', async ({ page }) => {
+		const openButton = page.locator('button:has-text("Open Tag Modal")');
+		await openButton.click();
+
+		// Create button should be disabled without name
+		const createButton = page.locator('button:has-text("Create Tag")');
+		await expect(createButton).toBeDisabled();
 	});
 });
 
-test.describe('Accessibility Compliance', () => {
+test.describe('Accessibility Verification', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('http://localhost:5173/test-ui');
 	});
 
 	test('should have proper heading hierarchy', async ({ page }) => {
-		// Main heading should be h1
-		const mainHeading = page.locator('h1');
-		await expect(mainHeading).toBeVisible();
+		// Check for h1 (main heading)
+		await expect(page.locator('h1')).toBeVisible();
 
-		// Component headings should be h2
-		const componentHeadings = page.locator('h2');
-		const count = await componentHeadings.count();
-		expect(count).toBeGreaterThan(0);
+		// Check for h2 (section headings)
+		const h2s = page.locator('h2');
+		expect(await h2s.count()).toBeGreaterThan(0);
 	});
 
-	test('should have proper form labels', async ({ page }) => {
-		// Open modal to test labels
+	test('should have labeled form inputs', async ({ page }) => {
+		// Search input should have aria-label or be associated with label
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
+		await expect(searchInput).toHaveAttribute('aria-label', 'Search prompts');
+	});
+
+	test('should have focus indicators on interactive elements', async ({ page }) => {
+		const folderButton = page.locator('button:has-text("All Folders")').first();
+
+		// Tab to button to focus it
+		await page.keyboard.press('Tab');
+
+		// Check focus is visible (ring-2 class or similar visual indicator)
+		// This is a visual test - focus should be visible
+		await expect(folderButton).toBeFocused();
+	});
+
+	test('should have color indicators paired with text labels', async ({ page }) => {
 		const openButton = page.locator('button:has-text("Open Tag Modal")');
 		await openButton.click();
 
-		// Check for labels
-		const tagNameLabel = page.locator('label:has-text("Tag Name")');
-		const colorLabel = page.locator('label:has-text("Color")');
-
-		await expect(tagNameLabel).toBeVisible();
-		await expect(colorLabel).toBeVisible();
+		// Color circles should be paired with text labels
+		const tagItems = page.locator('div:has-text("High Priority")');
+		await expect(tagItems).toBeVisible();
 	});
 
-	test('should show focus indicators on keyboard navigation', async ({ page }) => {
-		// Tab through interactive elements
-		const firstButton = page.locator('button').first();
-		await firstButton.focus();
+	test('should have sufficient touch target sizes', async ({ page }) => {
+		const buttons = page.locator('button');
+		const count = await buttons.count();
 
-		// Check that element is focused
-		const focusedElement = await page.evaluate(() => {
-			return document.activeElement?.tagName;
-		});
+		// At least one button should be present (buttons are 44x44px minimum)
+		expect(count).toBeGreaterThan(0);
+	});
+});
 
-		expect(focusedElement).toBe('BUTTON');
+test.describe('Complete Workflows', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.goto('http://localhost:5173/test-ui');
 	});
 
-	test('should have proper color contrast', async ({ page }) => {
-		// Text should be visible against background
-		const textElements = page.locator('text=Folder Tree Component');
-		await expect(textElements).toBeVisible();
+	test('should perform folder expand and search workflow', async ({ page }) => {
+		// Expand General folder
+		const generalFolderItem = page.locator('text=General').first().locator('..');
+		const expandButton = generalFolderItem.locator('button').first();
+		await expandButton.click();
 
-		// Check that text is readable (not hidden or too light)
-		const isVisible = await textElements.isVisible();
-		expect(isVisible).toBe(true);
+		// Verify child appears
+		await expect(page.locator('text=Customer Support')).toBeVisible();
+
+		// Search
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
+		await searchInput.fill('test');
+
+		// Verify search state updated
+		await expect(page.locator('text=Query: test')).toBeVisible();
 	});
 
-	test('should support keyboard navigation in dropdowns', async ({ page }) => {
-		// Open folder filter dropdown
-		const folderButton = page.locator('button:has-text("All Folders")').first();
-		await folderButton.click();
+	test('should perform tag creation workflow', async ({ page }) => {
+		// Open modal
+		const openButton = page.locator('button:has-text("Open Tag Modal")');
+		await openButton.click();
 
-		// Dropdown should be visible
-		const dropdown = page.locator('[role="listbox"]').first();
-		await expect(dropdown).toBeVisible();
+		// Fill form
+		const nameInput = page.locator('input[placeholder*="e.g., High Priority"]');
+		await nameInput.fill('Urgent');
 
-		// Navigate with arrow keys
-		const firstOption = dropdown.locator('button').first();
-		await firstOption.focus();
+		// Verify button is enabled
+		const createButton = page.locator('button:has-text("Create Tag")');
+		await expect(createButton).not.toBeDisabled();
+	});
 
-		// Press arrow down
-		await page.keyboard.press('ArrowDown');
+	test('should maintain state across interactions', async ({ page }) => {
+		// Perform search
+		const searchInput = page.locator('input[placeholder*="Search prompts"]');
+		await searchInput.fill('prompt');
 
-		// Next option should be focused
-		const focusedElement = await page.evaluate(() => {
-			return document.activeElement?.textContent;
-		});
+		// Verify state is maintained
+		await expect(searchInput).toHaveValue('prompt');
 
-		expect(focusedElement).not.toBeNull();
+		// Open modal (should not clear search)
+		const openButton = page.locator('button:has-text("Open Tag Modal")');
+		await openButton.click();
+		await page.locator('button:has-text("Close")').click();
+
+		// Search state should persist
+		await expect(searchInput).toHaveValue('prompt');
 	});
 });

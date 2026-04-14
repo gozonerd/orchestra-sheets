@@ -203,7 +203,7 @@
 							<div
 								class="h-4 w-4 rounded-full"
 								style="background-color: {tag.color}"
-							/>
+							></div>
 							<span class="text-sm font-medium text-gray-900">{tag.name}</span>
 						</div>
 					{/each}
@@ -230,7 +230,7 @@
 <TagModal
 	isOpen={showTagModal}
 	tags={mockTags}
-	{selectedTagIds}
+	selectedTags={selectedTagIds}
 	onClose={() => (showTagModal = false)}
 	onCreate={(name, color) => {
 		console.log('Create tag:', { name, color });
