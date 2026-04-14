@@ -48,6 +48,29 @@ export interface SearchResult {
 	createdAt: Date;
 }
 
+export interface TestRunResult {
+	model: string;
+	status: 'success' | 'error';
+	text?: string;
+	tokens?: { input: number; output: number };
+	cost?: number;
+	latency?: number;
+	error?: string;
+}
+
+export interface TestRun {
+	id: number;
+	userId: string;
+	promptId: number;
+	status: 'pending' | 'running' | 'completed' | 'failed' | 'archived';
+	models: string[];
+	testInputs: Record<string, string>;
+	results?: TestRunResult[];
+	totalCost: number;
+	createdAt: Date;
+	completedAt?: Date;
+}
+
 export interface ApiKeyInfo {
 	id: string;
 	name: string;
