@@ -3,11 +3,11 @@
  * Coordinates execution of test runs across multiple models
  */
 
-import { db } from '$lib/server/db/client';
+import { getDatabase } from '$lib/server/db/client';
 import { prompts, apiKeys } from '$lib/server/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import { executeTestForModel } from './executor';
-import { decryptApiKey } from '$lib/server/crypto';
+import { decryptKey } from '$lib/server/crypto';
 import { getProviderName } from '$lib/server/providers';
 
 interface TestRunResult {
@@ -37,12 +37,14 @@ export async function runTestForAllModels(
 	userId: string
 ): Promise<TestRunResult[]> {
 	try {
+		const db = getDatabase();
+
 		// Fetch prompt content
 		const promptData = await db
 			.select()
 			.from(prompts)
 			.where(eq(prompts.id, promptId))
-			.then((rows) => rows[0]);
+			.then((rows: any[]) => rows[0]);
 
 		if (!promptData) {
 			throw new Error(`Prompt ${promptId} not found`);
@@ -58,19 +60,21 @@ export async function runTestForAllModels(
 			const apiKeyData = await db
 				.select()
 				.from(apiKeys)
-				.where((t) => ({
-					userId,
-					provider: providerName,
-					isActive: true
-				}))
-				.then((rows) => rows[0]);
+				.where(
+					and(
+						eq(apiKeys.userId, userId),
+						eq(apiKeys.provider, providerName),
+						eq(apiKeys.isActive, true)
+					)
+				)
+				.then((rows: any[]) => rows[0]);
 
 			if (!apiKeyData) {
 				throw new Error(`No API key found for provider: ${providerName}`);
 			}
 
-			// Decrypt API key (assuming decrypted key is stored - actual decryption handled elsewhere)
-			const decryptedKey = apiKeyData.encryptedKey; // In production, decrypt here
+			// Decrypt API key using user's DEK
+			const decryptedKey = decryptKey(apiKeyData.encryptedKey, userId);
 			apiKeyMap[modelId] = decryptedKey;
 		}
 

@@ -1,6 +1,6 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db/client';
+import { getDatabase } from '$lib/server/db/client';
 import { testRuns, auditLogs } from '$lib/server/db/schema';
 import { eq, and } from 'drizzle-orm';
 import { requireAuth } from '$lib/server/auth-guard';
@@ -8,6 +8,7 @@ import { requireAuth } from '$lib/server/auth-guard';
 export const GET: RequestHandler = async (event) => {
 	const { user } = await requireAuth(event);
 	const testRunId = parseInt(event.params.id);
+	const db = getDatabase();
 
 	if (!testRunId) {
 		throw error(400, 'Invalid test run ID');
@@ -18,7 +19,7 @@ export const GET: RequestHandler = async (event) => {
 			.select()
 			.from(testRuns)
 			.where(and(eq(testRuns.id, testRunId), eq(testRuns.userId, user.id)))
-			.then((rows) => rows[0]);
+			.then((rows: any[]) => rows[0]);
 
 		if (!testRun) {
 			throw error(404, 'Test run not found');
@@ -45,6 +46,7 @@ export const GET: RequestHandler = async (event) => {
 export const DELETE: RequestHandler = async (event) => {
 	const { user } = await requireAuth(event);
 	const testRunId = parseInt(event.params.id);
+	const db = getDatabase();
 
 	if (!testRunId) {
 		throw error(400, 'Invalid test run ID');
@@ -56,7 +58,7 @@ export const DELETE: RequestHandler = async (event) => {
 			.select()
 			.from(testRuns)
 			.where(and(eq(testRuns.id, testRunId), eq(testRuns.userId, user.id)))
-			.then((rows) => rows[0]);
+			.then((rows: any[]) => rows[0]);
 
 		if (!testRun) {
 			throw error(404, 'Test run not found');

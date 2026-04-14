@@ -1,13 +1,14 @@
 import { json, error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { db } from '$lib/server/db/client';
+import { getDatabase } from '$lib/server/db/client';
 import { testRuns, auditLogs } from '$lib/server/db/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { requireAuth } from '$lib/server/auth-guard';
 
 export const POST: RequestHandler = async (event) => {
 	const { user } = await requireAuth(event);
 	const { promptId, modelIds, variables } = await event.request.json();
+	const db = getDatabase();
 
 	// Validate inputs
 	if (!promptId || !Array.isArray(modelIds) || modelIds.length < 2) {
@@ -59,6 +60,7 @@ export const POST: RequestHandler = async (event) => {
 
 export const GET: RequestHandler = async (event) => {
 	const { user } = await requireAuth(event);
+	const db = getDatabase();
 
 	try {
 		// Get all test runs for user
@@ -68,7 +70,7 @@ export const GET: RequestHandler = async (event) => {
 			.where(eq(testRuns.userId, user.id));
 
 		// Format response
-		const formatted = runs.map((run) => ({
+		const formatted = runs.map((run: any) => ({
 			id: run.id,
 			promptId: run.promptId,
 			status: run.status,

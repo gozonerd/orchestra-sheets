@@ -48,8 +48,8 @@ export async function executeTestForModel(
 
 		// Extract token counts (structure varies by provider)
 		const tokens = {
-			input: response.usage?.promptTokens || 0,
-			output: response.usage?.completionTokens || 0
+			input: response.usage?.inputTokens || 0,
+			output: response.usage?.outputTokens || 0
 		};
 
 		// Calculate cost
