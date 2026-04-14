@@ -1,38 +1,18 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import TestRunSetup from '$lib/components/TestRunSetup.svelte';
 	import TestRunResults from '$lib/components/TestRunResults.svelte';
-	import type { TestRun } from '$lib/types';
+	import type { TestRun, Prompt } from '$lib/types';
+	import type { PageData } from './$types';
 
-	let prompts: any[] = $state([]);
+	let { data }: { data: PageData } = $props();
+
+	let prompts: Prompt[] = $state(data.prompts);
+	let availableModels: string[] = $state(data.availableModels);
 	let currentTestRun: TestRun | null = $state(null);
 	let testResults: any[] = $state([]);
 	let isLoading: boolean = $state(false);
 	let error: string | null = $state(null);
 	let activeTab: 'setup' | 'history' = $state('setup');
-
-	const availableModels = [
-		'gpt-4-turbo',
-		'gpt-4o',
-		'gpt-3.5-turbo',
-		'claude-3-opus',
-		'claude-3-sonnet',
-		'claude-3-haiku',
-		'gemini-pro',
-		'gemini-1.5-pro'
-	];
-
-	// Load prompts on mount
-	onMount(async () => {
-		try {
-			const response = await fetch('/api/prompts');
-			const data = await response.json();
-			prompts = data;
-		} catch (e) {
-			error = 'Failed to load prompts';
-			console.error(e);
-		}
-	});
 
 	// Handle test run submission
 	async function handleTestRunSubmit(data: {
