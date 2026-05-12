@@ -1,0 +1,1454 @@
+
+> orchestra-sheets@0.0.1 test:e2e
+> playwright test --reporter=json
+
+{
+  "config": {
+    "configFile": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\playwright.config.ts",
+    "rootDir": "C:/Users/NerdyKrystal/repos/orchestra-sheets",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/NerdyKrystal/repos/orchestra-sheets/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/NerdyKrystal/repos/orchestra-sheets",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.spec.{ts,js}"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 2,
+    "webServer": {
+      "command": "npm run dev",
+      "port": 5173,
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "tests\\e2e\\folders-tags-search.spec.ts",
+      "file": "tests/e2e/folders-tags-search.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Folder Tree Interactions",
+          "file": "tests/e2e/folders-tags-search.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should expand and collapse folders",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5632,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=General').first().locator('xpath=./../../button[1]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=General').first().locator('xpath=./../../button[1]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=General').first().locator('xpath=./../../button[1]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=General').first().locator('xpath=./../../button[1]')\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:15:30",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 30,
+                          "line": 15
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 13 |\u001b[39m\n \u001b[90m 14 |\u001b[39m \t\t\u001b[90m// Initially, the folder should be collapsed (no > visible yet)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 15 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(expandButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m \t\t                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 16 |\u001b[39m\n \u001b[90m 17 |\u001b[39m \t\t\u001b[90m// Click to expand\u001b[39m\n \u001b[90m 18 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expandButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 30,
+                            "line": 15
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=General').first().locator('xpath=./../../button[1]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=General').first().locator('xpath=./../../button[1]')\u001b[22m\n\n\n  13 |\n  14 | \t\t// Initially, the folder should be collapsed (no > visible yet)\n> 15 | \t\tawait expect(expandButton).toBeVisible();\n     | \t\t                           ^\n  16 |\n  17 | \t\t// Click to expand\n  18 | \t\tawait expandButton.click();\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:15:30"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:34:19.151Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-cd8b1-expand-and-collapse-folders\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 30,
+                        "line": 15
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-9d21918995ba49c6e5e6",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 9,
+              "column": 2
+            },
+            {
+              "title": "should select folders on click",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5773,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:33:31",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 31,
+                          "line": 33
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 31 |\u001b[39m \t\t\u001b[90m// Check that the selected state is displayed\u001b[39m\n \u001b[90m 32 |\u001b[39m \t\t\u001b[36mconst\u001b[39m selectedState \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Selected Folder: ID: 1'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(selectedState)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m \t\t                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m \ttest(\u001b[32m'should navigate folders with arrow keys'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 31,
+                            "line": 33
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n\n\n  31 | \t\t// Check that the selected state is displayed\n  32 | \t\tconst selectedState = page.locator('text=Selected Folder: ID: 1');\n> 33 | \t\tawait expect(selectedState).toBeVisible();\n     | \t\t                            ^\n  34 | \t});\n  35 |\n  36 | \ttest('should navigate folders with arrow keys', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:33:31"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:34:50.367Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-2b02a-uld-select-folders-on-click\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 31,
+                        "line": 33
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-7780531ee860c2c6805d",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 26,
+              "column": 2
+            },
+            {
+              "title": "should navigate folders with arrow keys",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5810,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Customer Support')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Customer Support')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Customer Support')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Customer Support')\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:43:55",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 55,
+                          "line": 43
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 41 |\u001b[39m \t\t\u001b[90m// Press right arrow to expand\u001b[39m\n \u001b[90m 42 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mkeyboard\u001b[33m.\u001b[39mpress(\u001b[32m'ArrowRight'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Customer Support'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m \t\t                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m \t\t\u001b[90m// Press left arrow to collapse\u001b[39m\n \u001b[90m 46 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mkeyboard\u001b[33m.\u001b[39mpress(\u001b[32m'ArrowLeft'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 55,
+                            "line": 43
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Customer Support')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Customer Support')\u001b[22m\n\n\n  41 | \t\t// Press right arrow to expand\n  42 | \t\tawait page.keyboard.press('ArrowRight');\n> 43 | \t\tawait expect(page.locator('text=Customer Support')).toBeVisible();\n     | \t\t                                                    ^\n  44 |\n  45 | \t\t// Press left arrow to collapse\n  46 | \t\tawait page.keyboard.press('ArrowLeft');\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:43:55"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:35:16.788Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-6ebd2-ate-folders-with-arrow-keys\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 55,
+                        "line": 43
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-5001ee145b66f1bec7dd",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 36,
+              "column": 2
+            },
+            {
+              "title": "should select folder with Enter key",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5585,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:60:31",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 31,
+                          "line": 60
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 58 |\u001b[39m \t\t\u001b[90m// Verify selection\u001b[39m\n \u001b[90m 59 |\u001b[39m \t\t\u001b[36mconst\u001b[39m selectedState \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Selected Folder: ID: 1'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 60 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(selectedState)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m \t\t                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 61 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m\n \u001b[90m 63 |\u001b[39m \ttest(\u001b[32m'should navigate folders with Tab key'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 31,
+                            "line": 60
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Selected Folder: ID: 1')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Selected Folder: ID: 1')\u001b[22m\n\n\n  58 | \t\t// Verify selection\n  59 | \t\tconst selectedState = page.locator('text=Selected Folder: ID: 1');\n> 60 | \t\tawait expect(selectedState).toBeVisible();\n     | \t\t                            ^\n  61 | \t});\n  62 |\n  63 | \ttest('should navigate folders with Tab key', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:60:31"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:35:49.476Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-5d160-elect-folder-with-Enter-key\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 31,
+                        "line": 60
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-cbb085a57dfe63ddfd2e",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 50,
+              "column": 2
+            },
+            {
+              "title": "should navigate folders with Tab key",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1521,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:36:19.150Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-33a7c0d6247726fd188a",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 63,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "Search Bar Interactions",
+          "file": "tests/e2e/folders-tags-search.spec.ts",
+          "line": 77,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should type in search input",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 496,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:36:21.481Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-84c1e635c49ee638d1f4",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 82,
+              "column": 2
+            },
+            {
+              "title": "should display search results on input change",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6151,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Example Prompt').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Example Prompt').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Example Prompt').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Example Prompt').first()\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:100:33",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 33,
+                          "line": 100
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  98 |\u001b[39m \t\t\u001b[90m// Results should be visible\u001b[39m\n \u001b[90m  99 |\u001b[39m \t\t\u001b[36mconst\u001b[39m results \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=Example Prompt'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 100 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(results\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 101 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 102 |\u001b[39m\n \u001b[90m 103 |\u001b[39m \ttest(\u001b[32m'should filter by folder dropdown'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 33,
+                            "line": 100
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=Example Prompt').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=Example Prompt').first()\u001b[22m\n\n\n   98 | \t\t// Results should be visible\n   99 | \t\tconst results = page.locator('text=Example Prompt');\n> 100 | \t\tawait expect(results.first()).toBeVisible();\n      | \t\t                              ^\n  101 | \t});\n  102 |\n  103 | \ttest('should filter by folder dropdown', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:100:33"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:36:22.065Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-92b26-rch-results-on-input-change\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 33,
+                        "line": 100
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-75062670be19d6406942",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 89,
+              "column": 2
+            },
+            {
+              "title": "should filter by folder dropdown",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5636,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').first()\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:110:26",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 26,
+                          "line": 110
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 108 |\u001b[39m \t\t\u001b[90m// Dropdown should be visible\u001b[39m\n \u001b[90m 109 |\u001b[39m \t\t\u001b[36mconst\u001b[39m dropdown \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[role=\"listbox\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 110 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(dropdown)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 111 |\u001b[39m\n \u001b[90m 112 |\u001b[39m \t\t\u001b[90m// Select a folder\u001b[39m\n \u001b[90m 113 |\u001b[39m \t\t\u001b[36mconst\u001b[39m folderOption \u001b[33m=\u001b[39m dropdown\u001b[33m.\u001b[39mlocator(\u001b[32m'button'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 26,
+                            "line": 110
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').first()\u001b[22m\n\n\n  108 | \t\t// Dropdown should be visible\n  109 | \t\tconst dropdown = page.locator('[role=\"listbox\"]').first();\n> 110 | \t\tawait expect(dropdown).toBeVisible();\n      | \t\t                       ^\n  111 |\n  112 | \t\t// Select a folder\n  113 | \t\tconst folderOption = dropdown.locator('button').first();\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:110:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:37:18.560Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-daf52-d-filter-by-folder-dropdown\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 26,
+                        "line": 110
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-027b29639a3166aa513e",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 103,
+              "column": 2
+            },
+            {
+              "title": "should filter by tags dropdown",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5681,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').nth(1)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').nth(1)\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').nth(1)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').nth(1)\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:127:26",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 26,
+                          "line": 127
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 125 |\u001b[39m \t\t\u001b[90m// Dropdown should be visible\u001b[39m\n \u001b[90m 126 |\u001b[39m \t\t\u001b[36mconst\u001b[39m dropdown \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[role=\"listbox\"]'\u001b[39m)\u001b[33m.\u001b[39mnth(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 127 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(dropdown)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 128 |\u001b[39m\n \u001b[90m 129 |\u001b[39m \t\t\u001b[90m// Check a tag checkbox\u001b[39m\n \u001b[90m 130 |\u001b[39m \t\t\u001b[36mconst\u001b[39m checkbox \u001b[33m=\u001b[39m dropdown\u001b[33m.\u001b[39mlocator(\u001b[32m'input[type=\"checkbox\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 26,
+                            "line": 127
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"listbox\"]').nth(1)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"listbox\"]').nth(1)\u001b[22m\n\n\n  125 | \t\t// Dropdown should be visible\n  126 | \t\tconst dropdown = page.locator('[role=\"listbox\"]').nth(1);\n> 127 | \t\tawait expect(dropdown).toBeVisible();\n      | \t\t                       ^\n  128 |\n  129 | \t\t// Check a tag checkbox\n  130 | \t\tconst checkbox = dropdown.locator('input[type=\"checkbox\"]').first();\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:127:26"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:38:15.579Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-d88b0-uld-filter-by-tags-dropdown\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 26,
+                        "line": 127
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-3ff088f630ca5a55fb8f",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 120,
+              "column": 2
+            },
+            {
+              "title": "should clear search with empty input",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 641,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:39:32.832Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-6a5dbc046b8d18636539",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 137,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "Tag Modal Workflows",
+          "file": "tests/e2e/folders-tags-search.spec.ts",
+          "line": 148,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should open tag modal on button click",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5642,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"dialog\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"dialog\"]')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"dialog\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"dialog\"]')\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:159:23",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 23,
+                          "line": 159
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 157 |\u001b[39m \t\t\u001b[90m// Modal should be visible\u001b[39m\n \u001b[90m 158 |\u001b[39m \t\t\u001b[36mconst\u001b[39m modal \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[role=\"dialog\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 159 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(modal)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 160 |\u001b[39m\n \u001b[90m 161 |\u001b[39m \t\t\u001b[90m// Modal title should be visible\u001b[39m\n \u001b[90m 162 |\u001b[39m \t\t\u001b[36mconst\u001b[39m title \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'h2:has-text(\"Manage Tags\")'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 23,
+                            "line": 159
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[role=\"dialog\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[role=\"dialog\"]')\u001b[22m\n\n\n  157 | \t\t// Modal should be visible\n  158 | \t\tconst modal = page.locator('[role=\"dialog\"]');\n> 159 | \t\tawait expect(modal).toBeVisible();\n      | \t\t                    ^\n  160 |\n  161 | \t\t// Modal title should be visible\n  162 | \t\tconst title = page.locator('h2:has-text(\"Manage Tags\")');\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:159:23"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:39:33.955Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-33afe-n-tag-modal-on-button-click\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 23,
+                        "line": 159
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-fc4681ba9d7d500ee21a",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 153,
+              "column": 2
+            },
+            {
+              "title": "should fill and submit tag creation form",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30091,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 19,
+                            "line": 173
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('input[placeholder=\"e.g., High Priority\"]')\u001b[22m\n\n\n  171 | \t\t// Fill tag name\n  172 | \t\tconst nameInput = page.locator('input[placeholder=\"e.g., High Priority\"]');\n> 173 | \t\tawait nameInput.fill('Urgent');\n      | \t\t                ^\n  174 |\n  175 | \t\t// Select a color\n  176 | \t\tconst colorButton = page.locator('button[style*=\"background-color\"]').first();\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:173:19"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:40:31.368Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-bff6b-nd-submit-tag-creation-form\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-5653182715c0ce69fea7",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 166,
+              "column": 2
+            },
+            {
+              "title": "should close modal with X button",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 30118,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 21,
+                            "line": 191
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Close modal\"]')\u001b[22m\n\n\n  189 | \t\t// Find and click close button (X)\n  190 | \t\tconst closeButton = page.locator('button[aria-label=\"Close modal\"]');\n> 191 | \t\tawait closeButton.click();\n      | \t\t                  ^\n  192 |\n  193 | \t\t// Modal should not be visible\n  194 | \t\tconst modal = page.locator('[role=\"dialog\"]');\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:191:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:42:08.439Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-57cd6-d-close-modal-with-X-button\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-0108dce3ef5a9efd5471",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 184,
+              "column": 2
+            },
+            {
+              "title": "should close modal with Escape key",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3730,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 14,
+                          "line": 150
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 148 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Tag Modal Workflows'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 149 |\u001b[39m \ttest\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 150 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:5173/test-ui'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 151 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 152 |\u001b[39m\n \u001b[90m 153 |\u001b[39m \ttest(\u001b[32m'should open tag modal on button click'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 14,
+                            "line": 150
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n\n  148 | test.describe('Tag Modal Workflows', () => {\n  149 | \ttest.beforeEach(async ({ page }) => {\n> 150 | \t\tawait page.goto('http://localhost:5173/test-ui');\n      | \t\t           ^\n  151 | \t});\n  152 |\n  153 | \ttest('should open tag modal on button click', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:43:00.528Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-7a194-close-modal-with-Escape-key\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 14,
+                        "line": 150
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-fb200786a8d36828b4f2",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 198,
+              "column": 2
+            },
+            {
+              "title": "should toggle tag selection with checkbox",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3776,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 14,
+                          "line": 150
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 148 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Tag Modal Workflows'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 149 |\u001b[39m \ttest\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 150 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:5173/test-ui'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 151 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 152 |\u001b[39m\n \u001b[90m 153 |\u001b[39m \ttest(\u001b[32m'should open tag modal on button click'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 14,
+                            "line": 150
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n\n  148 | test.describe('Tag Modal Workflows', () => {\n  149 | \ttest.beforeEach(async ({ page }) => {\n> 150 | \t\tawait page.goto('http://localhost:5173/test-ui');\n      | \t\t           ^\n  151 | \t});\n  152 |\n  153 | \ttest('should open tag modal on button click', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:43:42.104Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-39d75-tag-selection-with-checkbox\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 14,
+                        "line": 150
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-5ffc51eff085f406c5ee",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 211,
+              "column": 2
+            },
+            {
+              "title": "should display existing tags in modal",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3789,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 14,
+                          "line": 150
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 148 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Tag Modal Workflows'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 149 |\u001b[39m \ttest\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 150 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:5173/test-ui'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 151 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 152 |\u001b[39m\n \u001b[90m 153 |\u001b[39m \ttest(\u001b[32m'should open tag modal on button click'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 14,
+                            "line": 150
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n\n  148 | test.describe('Tag Modal Workflows', () => {\n  149 | \ttest.beforeEach(async ({ page }) => {\n> 150 | \t\tawait page.goto('http://localhost:5173/test-ui');\n      | \t\t           ^\n  151 | \t});\n  152 |\n  153 | \ttest('should open tag modal on button click', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:150:14"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:44:26.080Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-60c1b-play-existing-tags-in-modal\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 14,
+                        "line": 150
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-c88797f0e447b5278071",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 231,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "Complete User Workflows",
+          "file": "tests/e2e/folders-tags-search.spec.ts",
+          "line": 247,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should perform complete search workflow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3764,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:249:14",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 14,
+                          "line": 249
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 247 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'Complete User Workflows'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m 248 |\u001b[39m \ttest\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 249 |\u001b[39m \t\t\u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'http://localhost:5173/test-ui'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m \t\t           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 250 |\u001b[39m \t})\u001b[33m;\u001b[39m\n \u001b[90m 251 |\u001b[39m\n \u001b[90m 252 |\u001b[39m \ttest(\u001b[32m'should perform complete search workflow'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 14,
+                            "line": 249
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n\n  247 | test.describe('Complete User Workflows', () => {\n  248 | \ttest.beforeEach(async ({ page }) => {\n> 249 | \t\tawait page.goto('http://localhost:5173/test-ui');\n      | \t\t           ^\n  250 | \t});\n  251 |\n  252 | \ttest('should perform complete search workflow', async ({ page }) => {\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:249:14"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:44:53.284Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-2e798-rm-complete-search-workflow\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 14,
+                        "line": 249
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-7b41c199c8f396e9ae2a",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 252,
+              "column": 2
+            },
+            {
+              "title": "should perform complete tag management workflow",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3743,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:249:14",
+                        "location": {
+                          "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                          "column": 14,
+                          "line": 249
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 247 |\u001b[39m \t\t\u001b[36mawait\u001b[39m expect(folderButton)\u001b[33m.\u001b[39mtoBeFocused()\u001b[33m;\u001b[39m\n \u001b[90m 248 |\u001b[39m \t})\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 249 |\u001b[39m\n \u001b[90m     |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 250 |\u001b[39m \ttest(\u001b[32m'should have color indicators paired with text labels'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 251 |\u001b[39m \t\t\u001b[36mconst\u001b[39m openButton \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button:has-text(\"Open Tag Modal\")'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 252 |\u001b[39m \t\t\u001b[36mawait\u001b[39m openButton\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                            "column": 14,
+                            "line": 249
+                          },
+                          "message": "Error: page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:5173/test-ui\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5173/test-ui\", waiting until \"load\"\u001b[22m\n\n\n  247 | \t\tawait expect(folderButton).toBeFocused();\n  248 | \t});\n> 249 |\n      | ^\n  250 | \ttest('should have color indicators paired with text labels', async ({ page }) => {\n  251 | \t\tconst openButton = page.locator('button:has-text(\"Open Tag Modal\")');\n  252 | \t\tawait openButton.click();\n    at C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts:249:14"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:45:33.646Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\test-results\\tests-e2e-folders-tags-sea-0a04a-ete-tag-management-workflow\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\NerdyKrystal\\repos\\orchestra-sheets\\tests\\e2e\\folders-tags-search.spec.ts",
+                        "column": 14,
+                        "line": 249
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-6e5231c75d5b040b7e29",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 274,
+              "column": 2
+            },
+            {
+              "title": "should navigate and search with keyboard only",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-f245b598c4b13af55d3b",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 301,
+              "column": 2
+            },
+            {
+              "title": "should maintain state across interactions",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-64409c3a558254b234da",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 328,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "title": "Accessibility Compliance",
+          "file": "tests/e2e/folders-tags-search.spec.ts",
+          "line": 359,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have proper heading hierarchy",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-ba9bf317c690b1eca076",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 364,
+              "column": 2
+            },
+            {
+              "title": "should have proper form labels",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-bf4a02c049e8d423e5dd",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 375,
+              "column": 2
+            },
+            {
+              "title": "should show focus indicators on keyboard navigation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-0ae3bb62e6f7b1bb9cc1",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 388,
+              "column": 2
+            },
+            {
+              "title": "should have proper color contrast",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-956f9d305d4c16bd74f6",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 401,
+              "column": 2
+            },
+            {
+              "title": "should support keyboard navigation in dropdowns",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "failed",
+                      "duration": 0,
+                      "error": {
+                        "message": "Test not found in the worker process. Make sure test title does not change."
+                      },
+                      "errors": [
+                        {
+                          "message": "Test not found in the worker process. Make sure test title does not change."
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-14T06:46:39.213Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "37c5b79198e3e335123c-89e732e38ca7e328a5fb",
+              "file": "tests/e2e/folders-tags-search.spec.ts",
+              "line": 411,
+              "column": 2
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-14T06:34:16.639Z",
+    "duration": 742635.664,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 22,
+    "flaky": 0
+  }
+}
