@@ -39,7 +39,8 @@ describe('Version Management API', () => {
 		});
 
 		it('should include content preview in version list', () => {
-			const preview = 'Hello {{name}}, this is a long content that should be truncated...'.substring(0, 100);
+			const preview =
+				'Hello {{name}}, this is a long content that should be truncated...'.substring(0, 100);
 			expect(preview.length).toBeLessThanOrEqual(100);
 		});
 	});
@@ -70,7 +71,11 @@ describe('Version Management API', () => {
 			const mockDiff = {
 				fromVersion: 1,
 				toVersion: 2,
-				diffs: [[0, 'unchanged'], [1, 'added'], [-1, 'deleted']],
+				diffs: [
+					[0, 'unchanged'],
+					[1, 'added'],
+					[-1, 'deleted']
+				],
 				additions: 5,
 				deletions: 3
 			};

@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		parseVariables,
-		getUniqueVariableNames,
-		validatePrompt
-	} from '$lib/prompts/variables';
+	import { parseVariables, getUniqueVariableNames, validatePrompt } from '$lib/prompts/variables';
 
 	let promptName = $state('');
 	let promptContent = $state('');

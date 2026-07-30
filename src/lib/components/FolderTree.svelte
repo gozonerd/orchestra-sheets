@@ -37,11 +37,7 @@
 		expandedFolders = expandedFolders; // Trigger reactivity
 	}
 
-	function handleKeyDown(
-		e: KeyboardEvent,
-		folderId: number,
-		children: Folder[] | undefined
-	) {
+	function handleKeyDown(e: KeyboardEvent, folderId: number, children: Folder[] | undefined) {
 		if (e.key === 'ArrowRight' && children && children.length > 0) {
 			e.preventDefault();
 			if (!expandedFolders.has(folderId)) {
@@ -116,7 +112,7 @@
 					{#if folder.children && folder.children.length > 0}
 						<button
 							type="button"
-							class="flex-shrink-0 p-1 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+							class="flex-shrink-0 rounded p-1 text-gray-600 hover:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 							aria-label={expandedFolders.has(folder.id) ? 'Collapse folder' : 'Expand folder'}
 							onclick={() => toggleExpanded(folder.id)}
 						>
@@ -127,7 +123,12 @@
 								stroke="currentColor"
 								viewBox="0 0 24 24"
 							>
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 5l7 7-7 7"
+								/>
 							</svg>
 						</button>
 					{:else}
@@ -136,11 +137,13 @@
 
 					<!-- Drag handle -->
 					<div
-						class="flex-shrink-0 cursor-grab active:cursor-grabbing p-1 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100"
+						class="flex-shrink-0 cursor-grab p-1 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
 						title="Drag to move folder"
 					>
 						<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-							<path d="M9 3h2v2H9V3zm0 4h2v2H9V7zm0 4h2v2H9v-2zm4-8h2v2h-2V3zm0 4h2v2h-2V7zm0 4h2v2h-2v-2z" />
+							<path
+								d="M9 3h2v2H9V3zm0 4h2v2H9V7zm0 4h2v2H9v-2zm4-8h2v2h-2V3zm0 4h2v2h-2V7zm0 4h2v2h-2v-2z"
+							/>
 						</svg>
 					</div>
 
@@ -175,8 +178,10 @@
 									{#if childFolder.children && childFolder.children.length > 0}
 										<button
 											type="button"
-											class="flex-shrink-0 p-1 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
-											aria-label={expandedFolders.has(childFolder.id) ? 'Collapse folder' : 'Expand folder'}
+											class="flex-shrink-0 rounded p-1 text-gray-600 hover:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+											aria-label={expandedFolders.has(childFolder.id)
+												? 'Collapse folder'
+												: 'Expand folder'}
 											onclick={() => toggleExpanded(childFolder.id)}
 										>
 											<svg
@@ -186,7 +191,12 @@
 												stroke="currentColor"
 												viewBox="0 0 24 24"
 											>
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M9 5l7 7-7 7"
+												/>
 											</svg>
 										</button>
 									{:else}
@@ -195,21 +205,29 @@
 
 									<!-- Drag handle -->
 									<div
-										class="flex-shrink-0 cursor-grab active:cursor-grabbing p-1 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100"
+										class="flex-shrink-0 cursor-grab p-1 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing"
 										title="Drag to move folder"
 									>
 										<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-											<path d="M9 3h2v2H9V3zm0 4h2v2H9V7zm0 4h2v2H9v-2zm4-8h2v2h-2V3zm0 4h2v2h-2V7zm0 4h2v2h-2v-2z" />
+											<path
+												d="M9 3h2v2H9V3zm0 4h2v2H9V7zm0 4h2v2H9v-2zm4-8h2v2h-2V3zm0 4h2v2h-2V7zm0 4h2v2h-2v-2z"
+											/>
 										</svg>
 									</div>
 
 									<!-- Folder icon and name -->
-									<svg class="h-5 w-5 flex-shrink-0 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+									<svg
+										class="h-5 w-5 flex-shrink-0 text-blue-600"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+									>
 										<path
 											d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"
 										/>
 									</svg>
-									<span class="ml-2 flex-1 text-sm font-medium text-gray-900">{childFolder.name}</span>
+									<span class="ml-2 flex-1 text-sm font-medium text-gray-900"
+										>{childFolder.name}</span
+									>
 								</div>
 							</li>
 						{/each}
@@ -223,7 +241,7 @@
 	<div class="border-t border-gray-200 p-4">
 		<button
 			type="button"
-			class="w-full flex items-center justify-center gap-2 rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+			class="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
 		>
 			<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />

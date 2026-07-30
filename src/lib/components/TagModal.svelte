@@ -31,7 +31,15 @@
 	let editingName = $state('');
 	let editingColor = $state('');
 
-	const defaultColors = ['#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#06B6D4'];
+	const defaultColors = [
+		'#3B82F6',
+		'#EF4444',
+		'#10B981',
+		'#F59E0B',
+		'#8B5CF6',
+		'#EC4899',
+		'#06B6D4'
+	];
 
 	function handleCreateTag() {
 		if (newTagName.trim()) {
@@ -89,7 +97,7 @@
 
 	<!-- Modal dialog -->
 	<div
-		class="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white shadow-lg"
+		class="fixed top-1/2 left-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white shadow-lg"
 		role="dialog"
 		aria-modal="true"
 		aria-labelledby="tag-modal-title"
@@ -100,12 +108,17 @@
 				<h2 id="tag-modal-title" class="text-xl font-bold text-gray-900">Manage Tags</h2>
 				<button
 					type="button"
-					class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+					class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 					aria-label="Close modal"
 					onclick={() => onClose?.()}
 				>
 					<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M6 18L18 6M6 6l12 12"
+						/>
 					</svg>
 				</button>
 			</div>
@@ -130,7 +143,9 @@
 
 					<div class="grid grid-cols-2 gap-4">
 						<div>
-							<label for="tag-color-input" class="block text-sm font-medium text-gray-700">Color (Hex)</label>
+							<label for="tag-color-input" class="block text-sm font-medium text-gray-700"
+								>Color (Hex)</label
+							>
 							<input
 								id="tag-color-input"
 								bind:value={newTagColor}
@@ -140,7 +155,9 @@
 							/>
 						</div>
 						<div>
-							<label for="tag-color-picker" class="block text-sm font-medium text-gray-700">Pick Color</label>
+							<label for="tag-color-picker" class="block text-sm font-medium text-gray-700"
+								>Pick Color</label
+							>
 							<input
 								id="tag-color-picker"
 								bind:value={newTagColor}
@@ -170,7 +187,7 @@
 						type="button"
 						onclick={handleCreateTag}
 						disabled={!newTagName.trim()}
-						class="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400"
+						class="w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:bg-gray-400"
 					>
 						Create Tag
 					</button>
@@ -190,8 +207,9 @@
 								<div class="rounded-lg border border-gray-300 bg-gray-50 p-3">
 									<div class="space-y-3">
 										<div>
-											<label for="edit-tag-name-{tag.id}" class="block text-sm font-medium text-gray-700"
-												>Tag Name</label
+											<label
+												for="edit-tag-name-{tag.id}"
+												class="block text-sm font-medium text-gray-700">Tag Name</label
 											>
 											<input
 												id="edit-tag-name-{tag.id}"
@@ -205,8 +223,7 @@
 											<div>
 												<label
 													for="edit-tag-color-input-{tag.id}"
-													class="block text-sm font-medium text-gray-700"
-													>Color (Hex)</label
+													class="block text-sm font-medium text-gray-700">Color (Hex)</label
 												>
 												<input
 													id="edit-tag-color-input-{tag.id}"
@@ -218,8 +235,7 @@
 											<div>
 												<label
 													for="edit-tag-color-picker-{tag.id}"
-													class="block text-sm font-medium text-gray-700"
-													>Pick Color</label
+													class="block text-sm font-medium text-gray-700">Pick Color</label
 												>
 												<input
 													id="edit-tag-color-picker-{tag.id}"
@@ -234,14 +250,14 @@
 											<button
 												type="button"
 												onclick={() => handleUpdateTag(tag.id)}
-												class="flex-1 rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+												class="flex-1 rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
 											>
 												Save
 											</button>
 											<button
 												type="button"
 												onclick={cancelEdit}
-												class="flex-1 rounded-lg bg-gray-300 px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+												class="flex-1 rounded-lg bg-gray-300 px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none"
 											>
 												Cancel
 											</button>
@@ -250,7 +266,9 @@
 								</div>
 							{:else}
 								<!-- Display mode -->
-								<div class="flex items-center justify-between rounded-lg border border-gray-200 p-3 hover:bg-gray-50">
+								<div
+									class="flex items-center justify-between rounded-lg border border-gray-200 p-3 hover:bg-gray-50"
+								>
 									<div class="flex items-center gap-3">
 										<input
 											type="checkbox"
@@ -273,7 +291,7 @@
 										<button
 											type="button"
 											onclick={() => startEditTag(tag)}
-											class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+											class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 											aria-label="Edit tag {tag.name}"
 										>
 											<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -288,7 +306,7 @@
 										<button
 											type="button"
 											onclick={() => onDelete?.(tag.id)}
-											class="rounded-lg p-2 text-gray-500 hover:bg-red-100 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+											class="rounded-lg p-2 text-gray-500 hover:bg-red-100 hover:text-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
 											aria-label="Delete tag {tag.name}"
 										>
 											<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -314,7 +332,7 @@
 			<button
 				type="button"
 				onclick={() => onClose?.()}
-				class="w-full rounded-lg bg-gray-300 px-4 py-2 font-medium text-gray-900 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+				class="w-full rounded-lg bg-gray-300 px-4 py-2 font-medium text-gray-900 hover:bg-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none"
 			>
 				Close
 			</button>

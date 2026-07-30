@@ -12,10 +12,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const db = getDatabase();
 
 	// Fetch prompts for the user
-	const userPrompts = await db
-		.select()
-		.from(prompts)
-		.where(eq(prompts.userId, session.user.id));
+	const userPrompts = await db.select().from(prompts).where(eq(prompts.userId, session.user.id));
 
 	// Available models for A/B testing
 	const availableModels = [

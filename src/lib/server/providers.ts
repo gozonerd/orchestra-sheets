@@ -69,9 +69,6 @@ export function getProviderName(model: string): string {
  */
 export function isValidModel(model: string): boolean {
 	return (
-		/^gpt-/.test(model) ||
-		/^claude-/.test(model) ||
-		/^gemini-/.test(model) ||
-		/^llama-/.test(model)
+		/^gpt-/.test(model) || /^claude-/.test(model) || /^gemini-/.test(model) || /^llama-/.test(model)
 	);
 }

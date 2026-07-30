@@ -117,12 +117,13 @@
 				<div class="space-y-2">
 					{#each versions as version (version.versionNumber)}
 						<div
-							class="cursor-pointer rounded border-2 p-3 transition {selectedVersion === version.versionNumber
+							class="cursor-pointer rounded border-2 p-3 transition {selectedVersion ===
+							version.versionNumber
 								? 'border-blue-500 bg-blue-50'
 								: 'border-gray-200 hover:border-gray-300'}"
 							role="button"
 							tabindex="0"
-							onclick={() => selectedVersion = version.versionNumber}
+							onclick={() => (selectedVersion = version.versionNumber)}
 							onkeydown={(e) => e.key === 'Enter' && (selectedVersion = version.versionNumber)}
 							aria-label="Select version {version.versionNumber}"
 						>
@@ -198,13 +199,15 @@
 
 	<!-- Rollback Confirmation Dialog -->
 	{#if showRollbackDialog}
-		<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+		<div class="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-black">
 			<div class="rounded-lg bg-white p-6">
 				<h3 class="text-lg font-bold">Confirm Rollback</h3>
 				<p class="mt-2 text-gray-600">
 					Restore to version <span class="font-mono font-bold">v{rollbackTarget}</span>?
 				</p>
-				<p class="mt-1 text-sm text-gray-500">This will create a new version with the restored content.</p>
+				<p class="mt-1 text-sm text-gray-500">
+					This will create a new version with the restored content.
+				</p>
 				<div class="mt-6 flex gap-3">
 					<button
 						class="rounded bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"

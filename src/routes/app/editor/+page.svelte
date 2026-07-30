@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		parseVariables,
-		getUniqueVariableNames,
-		validatePrompt
-	} from '$lib/prompts/variables';
+	import { parseVariables, getUniqueVariableNames, validatePrompt } from '$lib/prompts/variables';
 
 	let promptName = $state('');
 	let promptContent = $state('');
@@ -84,7 +80,7 @@
 		<!-- Prompt Description -->
 		<div>
 			<label for="prompt-description" class="block text-sm font-medium text-gray-900">
-				Description <span class="text-gray-500 text-xs">(optional)</span>
+				Description <span class="text-xs text-gray-500">(optional)</span>
 			</label>
 			<textarea
 				id="prompt-description"
@@ -101,11 +97,11 @@
 				Prompt Content <span class="text-red-600" aria-label="required">*</span>
 			</label>
 			<p class="mt-1 text-xs text-gray-600">
-				Use <code class="font-mono bg-gray-100 px-1 py-0.5 rounded">{'{{variable}}'}</code> syntax for
-				placeholders. Example:
-				<code class="font-mono bg-gray-100 px-1 py-0.5 rounded">{'{{name}}'}</code>
+				Use <code class="rounded bg-gray-100 px-1 py-0.5 font-mono">{'{{variable}}'}</code> syntax
+				for placeholders. Example:
+				<code class="rounded bg-gray-100 px-1 py-0.5 font-mono">{'{{name}}'}</code>
 				or with default:
-				<code class="font-mono bg-gray-100 px-1 py-0.5 rounded">{'{{name|User}}'}</code>
+				<code class="rounded bg-gray-100 px-1 py-0.5 font-mono">{'{{name|User}}'}</code>
 			</p>
 			<textarea
 				id="prompt-content"
@@ -136,14 +132,14 @@
 		<button
 			onclick={savePrompt}
 			disabled={isSaving || !promptName || !promptContent}
-			class="w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+			class="w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-400"
 		>
 			{isSaving ? 'Saving...' : 'Save Prompt'}
 		</button>
 
 		{#if saveMessage}
 			<div
-				class="rounded-lg bg-green-50 p-4 text-green-800 border border-green-200"
+				class="rounded-lg border border-green-200 bg-green-50 p-4 text-green-800"
 				role="status"
 				aria-live="polite"
 			>
@@ -156,7 +152,7 @@
 	<div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
 		<!-- Validation Info -->
 		<div class="rounded-lg border border-gray-200 bg-white p-6">
-			<h2 class="font-semibold text-gray-900 text-lg">Validation</h2>
+			<h2 class="text-lg font-semibold text-gray-900">Validation</h2>
 			{#if validation.valid}
 				<div class="mt-3 flex items-center gap-2 text-green-600">
 					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -168,8 +164,10 @@
 				<div class="mt-3 space-y-2">
 					{#each validation.errors as error}
 						<div class="flex items-start gap-2 text-red-600">
-							<svg class="h-5 w-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
-								<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+							<svg class="mt-0.5 h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+								<path
+									d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+								/>
 							</svg>
 							<span class="text-sm">{error}</span>
 						</div>
@@ -180,7 +178,7 @@
 
 		<!-- Variables Summary -->
 		<div class="rounded-lg border border-gray-200 bg-white p-6">
-			<h2 class="font-semibold text-gray-900 text-lg">Variables Detected</h2>
+			<h2 class="text-lg font-semibold text-gray-900">Variables Detected</h2>
 			<p class="mt-3 text-sm text-gray-600">
 				Found <strong>{variables.length}</strong>
 				variable{variables.length !== 1 ? 's' : ''} ({uniqueVars.length} unique)
@@ -188,7 +186,9 @@
 			{#if uniqueVars.length > 0}
 				<div class="mt-3 space-y-2">
 					{#each uniqueVars as varName}
-						<div class="rounded-lg bg-blue-50 px-3 py-2 font-mono text-sm text-blue-900 border border-blue-200">
+						<div
+							class="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 font-mono text-sm text-blue-900"
+						>
 							<code>{'{{' + varName + '}}'}</code>
 						</div>
 					{/each}
@@ -200,23 +200,31 @@
 	</div>
 
 	<!-- Keyboard Navigation Help -->
-	<div class="mt-8 rounded-lg bg-blue-50 border border-blue-200 p-6" id="variable-help">
-		<h3 class="font-semibold text-blue-900 text-lg">Keyboard Navigation</h3>
+	<div class="mt-8 rounded-lg border border-blue-200 bg-blue-50 p-6" id="variable-help">
+		<h3 class="text-lg font-semibold text-blue-900">Keyboard Navigation</h3>
 		<ul class="mt-3 space-y-2 text-sm text-blue-900">
 			<li class="flex gap-2">
-				<kbd class="font-mono bg-white px-2 py-1 rounded border border-blue-300 flex-shrink-0">Tab</kbd>
+				<kbd class="flex-shrink-0 rounded border border-blue-300 bg-white px-2 py-1 font-mono"
+					>Tab</kbd
+				>
 				<span>Move between fields</span>
 			</li>
 			<li class="flex gap-2">
-				<kbd class="font-mono bg-white px-2 py-1 rounded border border-blue-300 flex-shrink-0">Shift+Tab</kbd>
+				<kbd class="flex-shrink-0 rounded border border-blue-300 bg-white px-2 py-1 font-mono"
+					>Shift+Tab</kbd
+				>
 				<span>Move to previous field</span>
 			</li>
 			<li class="flex gap-2">
-				<kbd class="font-mono bg-white px-2 py-1 rounded border border-blue-300 flex-shrink-0">Ctrl+S</kbd>
+				<kbd class="flex-shrink-0 rounded border border-blue-300 bg-white px-2 py-1 font-mono"
+					>Ctrl+S</kbd
+				>
 				<span>Save prompt</span>
 			</li>
 			<li class="flex gap-2">
-				<kbd class="font-mono bg-white px-2 py-1 rounded border border-blue-300 flex-shrink-0">Ctrl+Enter</kbd>
+				<kbd class="flex-shrink-0 rounded border border-blue-300 bg-white px-2 py-1 font-mono"
+					>Ctrl+Enter</kbd
+				>
 				<span>Save prompt from content field</span>
 			</li>
 		</ul>

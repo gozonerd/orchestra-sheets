@@ -39,7 +39,13 @@ export const POST: RequestHandler = async (event) => {
 		const variables = testRun.testInputs ? JSON.parse(testRun.testInputs as string) : {};
 
 		// Execute test for all models
-		const results = await runTestForAllModels(testRunId, testRun.promptId, modelIds, variables, user.id);
+		const results = await runTestForAllModels(
+			testRunId,
+			testRun.promptId,
+			modelIds,
+			variables,
+			user.id
+		);
 
 		// Calculate total cost
 		const totalCost = results.reduce((sum: number, r: any) => sum + (r.cost || 0), 0);

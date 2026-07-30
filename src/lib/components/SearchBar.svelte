@@ -70,7 +70,10 @@
 		}
 	}
 
-	function flattenFolders(folders: Folder[], prefix = ''): Array<{ folder: Folder; indent: string }> {
+	function flattenFolders(
+		folders: Folder[],
+		prefix = ''
+	): Array<{ folder: Folder; indent: string }> {
 		const result: Array<{ folder: Folder; indent: string }> = [];
 		for (const folder of folders) {
 			result.push({ folder, indent: prefix });
@@ -103,7 +106,7 @@
 			type="button"
 			onclick={handleSearch}
 			disabled={isLoading}
-			class="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400"
+			class="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:bg-gray-400"
 			aria-label="Search"
 		>
 			{#if isLoading}
@@ -117,7 +120,12 @@
 				</svg>
 			{:else}
 				<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+					/>
 				</svg>
 			{/if}
 		</button>
@@ -130,13 +138,18 @@
 			<button
 				type="button"
 				onclick={() => (showFolderDropdown = !showFolderDropdown)}
-				class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+				class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 				aria-label="Filter by folder"
 				aria-haspopup="listbox"
 				aria-expanded={showFolderDropdown}
 			>
 				<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+					/>
 				</svg>
 				{#if selectedFolderId}
 					Folder: {folders.find((f) => f.id === selectedFolderId)?.name}
@@ -147,13 +160,13 @@
 
 			{#if showFolderDropdown}
 				<div
-					class="absolute top-full left-0 mt-2 w-48 rounded-lg border border-gray-300 bg-white shadow-lg z-50"
+					class="absolute top-full left-0 z-50 mt-2 w-48 rounded-lg border border-gray-300 bg-white shadow-lg"
 					role="listbox"
 				>
 					<button
 						type="button"
 						onclick={() => handleFolderSelect(null)}
-						class="w-full px-4 py-2 text-left text-sm hover:bg-gray-100 first:rounded-t-lg"
+						class="w-full px-4 py-2 text-left text-sm first:rounded-t-lg hover:bg-gray-100"
 						class:bg-blue-50={selectedFolderId === null}
 						class:font-semibold={selectedFolderId === null}
 					>
@@ -180,13 +193,18 @@
 			<button
 				type="button"
 				onclick={() => (showTagDropdown = !showTagDropdown)}
-				class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+				class="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 				aria-label="Filter by tags"
 				aria-haspopup="listbox"
 				aria-expanded={showTagDropdown}
 			>
 				<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+					/>
 				</svg>
 				{#if selectedTagIds.length > 0}
 					Tags: {selectedTagIds.length}
@@ -197,7 +215,7 @@
 
 			{#if showTagDropdown}
 				<div
-					class="absolute top-full left-0 mt-2 w-56 rounded-lg border border-gray-300 bg-white shadow-lg z-50"
+					class="absolute top-full left-0 z-50 mt-2 w-56 rounded-lg border border-gray-300 bg-white shadow-lg"
 					role="listbox"
 				>
 					<div class="max-h-60 overflow-y-auto p-2">
@@ -236,8 +254,18 @@
 		>
 			{#if isLoading}
 				<div class="flex items-center justify-center gap-2 px-4 py-8">
-					<svg class="h-5 w-5 animate-spin text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+					<svg
+						class="h-5 w-5 animate-spin text-blue-600"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M5 13l4 4L19 7"
+						/>
 					</svg>
 					<span class="text-sm text-gray-600">Searching...</span>
 				</div>
@@ -251,7 +279,7 @@
 						<button
 							type="button"
 							onclick={() => onResultSelect?.(result)}
-							class="w-full border-b border-gray-200 px-4 py-3 text-left hover:bg-gray-50 last:border-b-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+							class="w-full border-b border-gray-200 px-4 py-3 text-left last:border-b-0 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-inset"
 						>
 							<p class="font-semibold text-gray-900">{result.name}</p>
 							{#if result.description}

@@ -75,12 +75,12 @@
 	}
 </script>
 
-<div class="h-screen flex flex-col bg-white">
+<div class="flex h-screen flex-col bg-white">
 	<!-- Header -->
 	<div class="bg-blue-600 text-white shadow">
-		<div class="max-w-6xl mx-auto px-6 py-4">
+		<div class="mx-auto max-w-6xl px-6 py-4">
 			<h1 class="text-2xl font-bold">A/B Test Models</h1>
-			<p class="text-blue-100 text-sm mt-1">
+			<p class="mt-1 text-sm text-blue-100">
 				Compare prompts across multiple LLM models with real-time cost and latency metrics
 			</p>
 		</div>
@@ -88,10 +88,10 @@
 
 	<!-- Tab Navigation -->
 	<div class="border-b bg-gray-50">
-		<div class="max-w-6xl mx-auto px-6 flex space-x-4">
+		<div class="mx-auto flex max-w-6xl space-x-4 px-6">
 			<button
 				onclick={() => (activeTab = 'setup')}
-				class="px-4 py-3 font-medium border-b-2 transition-colors"
+				class="border-b-2 px-4 py-3 font-medium transition-colors"
 				class:border-blue-600={activeTab === 'setup'}
 				class:text-blue-600={activeTab === 'setup'}
 				class:border-transparent={activeTab !== 'setup'}
@@ -101,7 +101,7 @@
 			</button>
 			<button
 				onclick={() => (activeTab = 'history')}
-				class="px-4 py-3 font-medium border-b-2 transition-colors"
+				class="border-b-2 px-4 py-3 font-medium transition-colors"
 				class:border-blue-600={activeTab === 'history'}
 				class:text-blue-600={activeTab === 'history'}
 				class:border-transparent={activeTab !== 'history'}
@@ -114,51 +114,44 @@
 
 	<!-- Main Content -->
 	<div class="flex-1 overflow-hidden">
-		<div class="max-w-6xl mx-auto px-6 py-6 h-full">
+		<div class="mx-auto h-full max-w-6xl px-6 py-6">
 			{#if error}
-				<div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-					<p class="text-red-800 font-medium">{error}</p>
+				<div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+					<p class="font-medium text-red-800">{error}</p>
 				</div>
 			{/if}
 
 			{#if activeTab === 'setup'}
-				<div class="grid grid-cols-2 gap-8 h-full">
+				<div class="grid h-full grid-cols-2 gap-8">
 					<!-- Setup Form (Left) -->
-					<div class="bg-white border rounded-lg p-6">
-						<h2 class="text-lg font-semibold mb-4">Test Configuration</h2>
-						<TestRunSetup
-							{prompts}
-							{availableModels}
-							isLoading={isLoading}
-							onSubmit={handleTestRunSubmit}
-						/>
+					<div class="rounded-lg border bg-white p-6">
+						<h2 class="mb-4 text-lg font-semibold">Test Configuration</h2>
+						<TestRunSetup {prompts} {availableModels} {isLoading} onSubmit={handleTestRunSubmit} />
 					</div>
 
 					<!-- Results (Right) -->
-					<div class="bg-white border rounded-lg overflow-hidden flex flex-col">
+					<div class="flex flex-col overflow-hidden rounded-lg border bg-white">
 						{#if currentTestRun && testResults.length > 0}
-							<TestRunResults
-								testRun={currentTestRun}
-								results={testResults}
-								isLoading={isLoading}
-							/>
+							<TestRunResults testRun={currentTestRun} results={testResults} {isLoading} />
 						{:else if isLoading}
-							<div class="flex items-center justify-center h-full">
+							<div class="flex h-full items-center justify-center">
 								<div class="text-center">
-									<div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent mx-auto mb-4"></div>
+									<div
+										class="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent"
+									></div>
 									<p class="text-gray-600">Running test...</p>
 								</div>
 							</div>
 						{:else}
-							<div class="flex items-center justify-center h-full text-gray-500">
+							<div class="flex h-full items-center justify-center text-gray-500">
 								<p>Results will appear here</p>
 							</div>
 						{/if}
 					</div>
 				</div>
 			{:else}
-				<div class="bg-white border rounded-lg p-6">
-					<h2 class="text-lg font-semibold mb-4">Test Run History</h2>
+				<div class="rounded-lg border bg-white p-6">
+					<h2 class="mb-4 text-lg font-semibold">Test Run History</h2>
 					<p class="text-gray-600">History feature coming soon</p>
 				</div>
 			{/if}

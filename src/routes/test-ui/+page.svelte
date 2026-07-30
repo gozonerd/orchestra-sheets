@@ -109,8 +109,10 @@
 
 <div class="min-h-screen bg-gray-50">
 	<div class="mx-auto max-w-7xl px-4 py-8">
-		<h1 class="text-4xl font-bold text-gray-900 mb-2">UI Component Test Suite</h1>
-		<p class="text-gray-600 mb-8">Testing Stage 07 UI components for accessibility and functionality</p>
+		<h1 class="mb-2 text-4xl font-bold text-gray-900">UI Component Test Suite</h1>
+		<p class="mb-8 text-gray-600">
+			Testing Stage 07 UI components for accessibility and functionality
+		</p>
 
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
 			<!-- Folder Tree Test -->
@@ -130,8 +132,13 @@
 					/>
 				</div>
 				<div class="mt-4 rounded-lg bg-blue-50 p-4 text-sm text-blue-900">
-					<p><strong>Selected Folder:</strong> {selectedFolderId ? `ID: ${selectedFolderId}` : 'None'}</p>
-					<p class="mt-2 text-xs">💡 Tip: Use arrow keys to expand/collapse, Enter to select, drag handles to reorder</p>
+					<p>
+						<strong>Selected Folder:</strong>
+						{selectedFolderId ? `ID: ${selectedFolderId}` : 'None'}
+					</p>
+					<p class="mt-2 text-xs">
+						💡 Tip: Use arrow keys to expand/collapse, Enter to select, drag handles to reorder
+					</p>
 				</div>
 			</div>
 
@@ -170,11 +177,14 @@
 				/>
 
 				<div class="mt-6 rounded-lg bg-green-50 p-4">
-					<h3 class="font-semibold text-green-900 mb-2">Search State:</h3>
-					<ul class="text-sm text-green-900 space-y-1">
+					<h3 class="mb-2 font-semibold text-green-900">Search State:</h3>
+					<ul class="space-y-1 text-sm text-green-900">
 						<li><strong>Query:</strong> {searchQuery || '(empty)'}</li>
 						<li><strong>Folder Filter:</strong> {selectedFolderId || 'None'}</li>
-						<li><strong>Tag Filters:</strong> {selectedTagIds.length > 0 ? selectedTagIds.join(', ') : 'None'}</li>
+						<li>
+							<strong>Tag Filters:</strong>
+							{selectedTagIds.length > 0 ? selectedTagIds.join(', ') : 'None'}
+						</li>
 						<li><strong>Results:</strong> {searchResults.length} items</li>
 					</ul>
 				</div>
@@ -183,27 +193,26 @@
 
 		<!-- Tag Modal Test -->
 		<div class="mt-8 rounded-lg border border-gray-200 bg-white p-6">
-			<div class="flex items-center justify-between mb-4">
+			<div class="mb-4 flex items-center justify-between">
 				<h2 class="text-xl font-bold text-gray-900">Tag Modal Component</h2>
 				<button
 					type="button"
 					onclick={() => (showTagModal = true)}
-					class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+					class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 				>
 					Open Tag Modal
 				</button>
 			</div>
-			<p class="text-gray-600 mb-4">Click the button above to test the modal. Test creating, editing, and deleting tags.</p>
+			<p class="mb-4 text-gray-600">
+				Click the button above to test the modal. Test creating, editing, and deleting tags.
+			</p>
 
 			<div class="rounded-lg bg-gray-50 p-4">
-				<h3 class="font-semibold text-gray-900 mb-3">Current Tags:</h3>
+				<h3 class="mb-3 font-semibold text-gray-900">Current Tags:</h3>
 				<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
 					{#each mockTags as tag}
 						<div class="flex items-center gap-2 rounded-lg border border-gray-200 p-2">
-							<div
-								class="h-4 w-4 rounded-full"
-								style="background-color: {tag.color}"
-							></div>
+							<div class="h-4 w-4 rounded-full" style="background-color: {tag.color}"></div>
 							<span class="text-sm font-medium text-gray-900">{tag.name}</span>
 						</div>
 					{/each}
@@ -215,7 +224,10 @@
 		<div class="mt-8 rounded-lg border border-amber-200 bg-amber-50 p-6">
 			<h2 class="mb-4 text-lg font-bold text-amber-900">♿ Accessibility Testing</h2>
 			<ul class="space-y-2 text-sm text-amber-900">
-				<li>✓ Folder Tree: Keyboard navigable (↑↓ to expand/collapse, Enter to select, Tab to move focus)</li>
+				<li>
+					✓ Folder Tree: Keyboard navigable (↑↓ to expand/collapse, Enter to select, Tab to move
+					focus)
+				</li>
 				<li>✓ Search Bar: All form controls have labels, dropdown accessible via keyboard</li>
 				<li>✓ Tag Modal: Modal dialog with proper roles, focus management, Escape to close</li>
 				<li>✓ Color indicators: Always paired with text labels (no color-only meanings)</li>

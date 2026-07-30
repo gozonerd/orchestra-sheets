@@ -27,9 +27,7 @@
 	// Extract variables from prompt template
 	function extractVariables(template: string): string[] {
 		const matches = template.match(/\{\{(\w+)\}\}/g) || [];
-		return matches
-			.map((m) => m.replace(/[{}]/g, ''))
-			.filter((v, i, arr) => arr.indexOf(v) === i);
+		return matches.map((m) => m.replace(/[{}]/g, '')).filter((v, i, arr) => arr.indexOf(v) === i);
 	}
 
 	// Update variables when prompt changes
@@ -82,14 +80,12 @@
 <div class="test-run-setup space-y-6">
 	<!-- Prompt Selection -->
 	<div class="form-group">
-		<label for="prompt-select" class="block text-sm font-medium mb-2">
-			Select Prompt
-		</label>
+		<label for="prompt-select" class="mb-2 block text-sm font-medium"> Select Prompt </label>
 		<select
 			id="prompt-select"
 			bind:value={selectedPromptId}
 			onchange={handlePromptChange}
-			class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+			class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 		>
 			<option value={null}>-- Choose a prompt --</option>
 			{#each prompts as prompt (prompt.id)}
@@ -103,26 +99,22 @@
 	<!-- Model Selection -->
 	{#if selectedPromptId !== null}
 		<div class="form-group">
-			<label class="block text-sm font-medium mb-2">
-				Select Models (minimum 2 required)
-			</label>
+			<label class="mb-2 block text-sm font-medium"> Select Models (minimum 2 required) </label>
 			<div class="grid grid-cols-2 gap-3">
 				{#each availableModels as model (model)}
-					<label class="flex items-center space-x-2 cursor-pointer">
+					<label class="flex cursor-pointer items-center space-x-2">
 						<input
 							type="checkbox"
 							checked={selectedModels.has(model)}
 							onchange={() => toggleModel(model)}
-							class="w-4 h-4 rounded border-gray-300 focus:ring-2 focus:ring-blue-500"
+							class="h-4 w-4 rounded border-gray-300 focus:ring-2 focus:ring-blue-500"
 						/>
 						<span class="text-sm">{model}</span>
 					</label>
 				{/each}
 			</div>
 			{#if selectedModels.size < 2}
-				<p class="text-sm text-red-600 mt-2">
-					Select at least 2 models
-				</p>
+				<p class="mt-2 text-sm text-red-600">Select at least 2 models</p>
 			{/if}
 		</div>
 	{/if}
@@ -130,13 +122,11 @@
 	<!-- Variables Input -->
 	{#if promptVariables.length > 0}
 		<div class="form-group">
-			<label class="block text-sm font-medium mb-3">
-				Prompt Variables
-			</label>
+			<label class="mb-3 block text-sm font-medium"> Prompt Variables </label>
 			<div class="space-y-3">
 				{#each promptVariables as varName (varName)}
 					<div>
-						<label for={`var-${varName}`} class="block text-sm font-medium mb-1">
+						<label for={`var-${varName}`} class="mb-1 block text-sm font-medium">
 							{varName}
 						</label>
 						<input
@@ -144,7 +134,7 @@
 							type="text"
 							bind:value={variables[varName]}
 							placeholder={`Enter value for ${varName}`}
-							class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+							class="w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 						/>
 					</div>
 				{/each}
@@ -156,7 +146,7 @@
 	<button
 		onclick={handleSubmit}
 		disabled={!isFormValid() || isLoading}
-		class="w-full px-4 py-2 bg-blue-600 text-white rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
+		class="w-full rounded-md bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
 	>
 		{isLoading ? 'Running Test...' : 'Run A/B Test'}
 	</button>

@@ -64,10 +64,7 @@ export const GET: RequestHandler = async (event) => {
 
 	try {
 		// Get all test runs for user
-		const runs = await db
-			.select()
-			.from(testRuns)
-			.where(eq(testRuns.userId, user.id));
+		const runs = await db.select().from(testRuns).where(eq(testRuns.userId, user.id));
 
 		// Format response
 		const formatted = runs.map((run: any) => ({

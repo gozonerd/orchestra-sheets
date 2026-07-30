@@ -65,10 +65,7 @@ export const DELETE: RequestHandler = async (event) => {
 		}
 
 		// Archive instead of hard delete
-		await db
-			.update(testRuns)
-			.set({ status: 'archived' })
-			.where(eq(testRuns.id, testRunId));
+		await db.update(testRuns).set({ status: 'archived' }).where(eq(testRuns.id, testRunId));
 
 		// Audit log
 		await db.insert(auditLogs).values({

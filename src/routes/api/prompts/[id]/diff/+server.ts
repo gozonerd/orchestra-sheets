@@ -37,12 +37,16 @@ export async function GET(event: RequestEvent) {
 			db
 				.select()
 				.from(promptVersions)
-				.where(and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, fromVersion)))
+				.where(
+					and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, fromVersion))
+				)
 				.limit(1),
 			db
 				.select()
 				.from(promptVersions)
-				.where(and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, toVersion)))
+				.where(
+					and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, toVersion))
+				)
 				.limit(1)
 		]);
 

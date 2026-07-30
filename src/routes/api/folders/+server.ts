@@ -12,10 +12,7 @@ export async function GET(event: RequestEvent) {
 		const userId = session.user.id;
 		const db = getDatabase();
 
-		const userFolders = await db
-			.select()
-			.from(folders)
-			.where(eq(folders.userId, userId));
+		const userFolders = await db.select().from(folders).where(eq(folders.userId, userId));
 
 		// Build hierarchy: organize by parent_id
 		const rootFolders = userFolders.filter((f) => f.parentId === null);

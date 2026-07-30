@@ -36,10 +36,10 @@
 	}
 </script>
 
-<div class="test-run-results h-full flex flex-col">
+<div class="test-run-results flex h-full flex-col">
 	<!-- Results Header -->
 	{#if testRun}
-		<div class="bg-gray-50 border-b p-4 flex justify-between items-center">
+		<div class="flex items-center justify-between border-b bg-gray-50 p-4">
 			<div>
 				<h2 class="text-lg font-semibold">Test Run Results</h2>
 				<p class="text-sm text-gray-600">
@@ -48,7 +48,9 @@
 			</div>
 			{#if isLoading}
 				<div class="flex items-center space-x-2">
-					<div class="animate-spin rounded-full h-4 w-4 border-2 border-blue-600 border-t-transparent"></div>
+					<div
+						class="h-4 w-4 animate-spin rounded-full border-2 border-blue-600 border-t-transparent"
+					></div>
 					<span class="text-sm text-gray-600">Running...</span>
 				</div>
 			{/if}
@@ -58,16 +60,16 @@
 	<!-- Main Content Area -->
 	<div class="flex flex-1 overflow-hidden">
 		<!-- Model Tabs (Left Pane) -->
-		<div class="w-32 bg-gray-100 border-r overflow-y-auto">
+		<div class="w-32 overflow-y-auto border-r bg-gray-100">
 			{#each results as result (result.model)}
 				<button
 					onclick={() => (selectedModel = result.model)}
-					class="w-full text-left px-4 py-3 border-b hover:bg-gray-200 transition-colors font-medium text-sm"
+					class="w-full border-b px-4 py-3 text-left text-sm font-medium transition-colors hover:bg-gray-200"
 					class:bg-white={selectedModel === result.model}
 					class:bg-gray-100={selectedModel !== result.model}
 				>
-					<div class="font-semibold truncate">{result.model}</div>
-					<div class="text-xs text-gray-600 mt-1">
+					<div class="truncate font-semibold">{result.model}</div>
+					<div class="mt-1 text-xs text-gray-600">
 						{#if result.status === 'success'}
 							<span class="text-green-600">✓ Success</span>
 						{:else}
@@ -88,21 +90,21 @@
 						<div class="space-y-6">
 							<!-- Metrics -->
 							<div class="grid grid-cols-3 gap-4">
-								<div class="bg-blue-50 p-4 rounded-lg">
+								<div class="rounded-lg bg-blue-50 p-4">
 									<p class="text-xs text-gray-600 uppercase">Cost</p>
-									<p class="text-2xl font-bold text-blue-600 mt-1">
+									<p class="mt-1 text-2xl font-bold text-blue-600">
 										{formatCost(result.cost)}
 									</p>
 								</div>
-								<div class="bg-green-50 p-4 rounded-lg">
+								<div class="rounded-lg bg-green-50 p-4">
 									<p class="text-xs text-gray-600 uppercase">Latency</p>
-									<p class="text-2xl font-bold text-green-600 mt-1">
+									<p class="mt-1 text-2xl font-bold text-green-600">
 										{formatLatency(result.latency)}
 									</p>
 								</div>
-								<div class="bg-purple-50 p-4 rounded-lg">
+								<div class="rounded-lg bg-purple-50 p-4">
 									<p class="text-xs text-gray-600 uppercase">Tokens</p>
-									<p class="text-sm text-gray-700 mt-1">
+									<p class="mt-1 text-sm text-gray-700">
 										{#if result.tokens}
 											{result.tokens.input + result.tokens.output} total
 										{:else}
@@ -114,8 +116,10 @@
 
 							<!-- Output -->
 							<div>
-								<h3 class="font-semibold text-sm mb-3">Output</h3>
-								<div class="bg-gray-50 p-4 rounded-lg border border-gray-200 max-h-96 overflow-y-auto font-mono text-sm whitespace-pre-wrap break-words">
+								<h3 class="mb-3 text-sm font-semibold">Output</h3>
+								<div
+									class="max-h-96 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-4 font-mono text-sm break-words whitespace-pre-wrap"
+								>
 									{result.text || 'No output'}
 								</div>
 							</div>
@@ -123,7 +127,7 @@
 							<!-- Token Details -->
 							{#if result.tokens}
 								<div class="border-t pt-4">
-									<h3 class="font-semibold text-sm mb-2">Token Breakdown</h3>
+									<h3 class="mb-2 text-sm font-semibold">Token Breakdown</h3>
 									<div class="grid grid-cols-2 gap-4 text-sm">
 										<div>
 											<p class="text-gray-600">Input Tokens</p>
@@ -139,9 +143,9 @@
 						</div>
 					{:else}
 						<!-- Error State -->
-						<div class="bg-red-50 border border-red-200 p-4 rounded-lg">
+						<div class="rounded-lg border border-red-200 bg-red-50 p-4">
 							<p class="text-sm font-medium text-red-800">Error</p>
-							<p class="text-sm text-red-700 mt-1">{result.error || 'Unknown error'}</p>
+							<p class="mt-1 text-sm text-red-700">{result.error || 'Unknown error'}</p>
 						</div>
 					{/if}
 				{/if}
@@ -153,36 +157,36 @@
 
 	<!-- Results Comparison Table (Bottom) -->
 	{#if results.length > 0}
-		<div class="bg-gray-50 border-t p-4 overflow-x-auto">
-			<h3 class="font-semibold text-sm mb-3">Comparison Summary</h3>
+		<div class="overflow-x-auto border-t bg-gray-50 p-4">
+			<h3 class="mb-3 text-sm font-semibold">Comparison Summary</h3>
 			<table class="w-full text-sm">
 				<thead>
 					<tr class="border-b">
-						<th class="text-left px-2 py-2 font-semibold">Model</th>
-						<th class="text-right px-2 py-2 font-semibold">Cost</th>
-						<th class="text-right px-2 py-2 font-semibold">Latency</th>
-						<th class="text-right px-2 py-2 font-semibold">Tokens</th>
-						<th class="text-center px-2 py-2 font-semibold">Status</th>
+						<th class="px-2 py-2 text-left font-semibold">Model</th>
+						<th class="px-2 py-2 text-right font-semibold">Cost</th>
+						<th class="px-2 py-2 text-right font-semibold">Latency</th>
+						<th class="px-2 py-2 text-right font-semibold">Tokens</th>
+						<th class="px-2 py-2 text-center font-semibold">Status</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each results as result (result.model)}
-						<tr class="border-b hover:bg-white transition-colors">
+						<tr class="border-b transition-colors hover:bg-white">
 							<td class="px-2 py-2 font-medium">{result.model}</td>
-							<td class="text-right px-2 py-2">{formatCost(result.cost)}</td>
-							<td class="text-right px-2 py-2">{formatLatency(result.latency)}</td>
-							<td class="text-right px-2 py-2">
+							<td class="px-2 py-2 text-right">{formatCost(result.cost)}</td>
+							<td class="px-2 py-2 text-right">{formatLatency(result.latency)}</td>
+							<td class="px-2 py-2 text-right">
 								{#if result.tokens}
 									{result.tokens.input + result.tokens.output}
 								{:else}
 									—
 								{/if}
 							</td>
-							<td class="text-center px-2 py-2">
+							<td class="px-2 py-2 text-center">
 								{#if result.status === 'success'}
-									<span class="text-green-600 font-medium">✓</span>
+									<span class="font-medium text-green-600">✓</span>
 								{:else}
-									<span class="text-red-600 font-medium">✗</span>
+									<span class="font-medium text-red-600">✗</span>
 								{/if}
 							</td>
 						</tr>

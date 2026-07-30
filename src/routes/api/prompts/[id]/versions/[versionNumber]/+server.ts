@@ -29,7 +29,9 @@ export async function GET(event: RequestEvent) {
 		const version = await db
 			.select()
 			.from(promptVersions)
-			.where(and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, versionNumber)))
+			.where(
+				and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, versionNumber))
+			)
 			.limit(1);
 
 		if (version.length === 0) {

@@ -34,7 +34,9 @@ export async function POST(event: RequestEvent) {
 		const versionToRestore = await db
 			.select()
 			.from(promptVersions)
-			.where(and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, versionNumber)))
+			.where(
+				and(eq(promptVersions.promptId, promptId), eq(promptVersions.versionNumber, versionNumber))
+			)
 			.limit(1);
 
 		if (versionToRestore.length === 0) {

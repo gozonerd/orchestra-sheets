@@ -43,7 +43,10 @@ describe('FolderTree Component', () => {
 	});
 
 	it('should flatten folder structure for display', () => {
-		function flattenFolders(folders: Folder[], prefix = ''): Array<{ folder: Folder; indent: string }> {
+		function flattenFolders(
+			folders: Folder[],
+			prefix = ''
+		): Array<{ folder: Folder; indent: string }> {
 			const result: Array<{ folder: Folder; indent: string }> = [];
 			for (const folder of folders) {
 				result.push({ folder, indent: prefix });
@@ -141,8 +144,22 @@ describe('SearchBar Component', () => {
 
 	it('should validate tag filters exist', () => {
 		const mockTags: Tag[] = [
-			{ id: 1, name: 'High Priority', color: '#EF4444', userId: 'user', createdAt: new Date(), updatedAt: new Date() },
-			{ id: 2, name: 'Review', color: '#F59E0B', userId: 'user', createdAt: new Date(), updatedAt: new Date() }
+			{
+				id: 1,
+				name: 'High Priority',
+				color: '#EF4444',
+				userId: 'user',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			},
+			{
+				id: 2,
+				name: 'Review',
+				color: '#F59E0B',
+				userId: 'user',
+				createdAt: new Date(),
+				updatedAt: new Date()
+			}
 		];
 
 		const validTagIds = [1, 2];

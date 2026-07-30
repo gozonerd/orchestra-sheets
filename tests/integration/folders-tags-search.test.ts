@@ -293,7 +293,9 @@ describe('Search Functionality', () => {
 
 	it('should search by description', () => {
 		const query = 'professional';
-		const results = mockPrompts.filter((p) => p.description.toLowerCase().includes(query.toLowerCase()));
+		const results = mockPrompts.filter((p) =>
+			p.description.toLowerCase().includes(query.toLowerCase())
+		);
 
 		expect(results).toHaveLength(1);
 		expect(results[0].name).toBe('Email Draft');
@@ -317,7 +319,11 @@ describe('Search Functionality', () => {
 		const query = 'email';
 		const folderId = 2;
 
-		let results = mockPrompts.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()) || p.description.toLowerCase().includes(query.toLowerCase()));
+		let results = mockPrompts.filter(
+			(p) =>
+				p.name.toLowerCase().includes(query.toLowerCase()) ||
+				p.description.toLowerCase().includes(query.toLowerCase())
+		);
 
 		results = results.filter((p) => p.folderId === folderId);
 
@@ -327,7 +333,11 @@ describe('Search Functionality', () => {
 
 	it('should return empty results for no matches', () => {
 		const query = 'nonexistent';
-		const results = mockPrompts.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()) || p.description.toLowerCase().includes(query.toLowerCase()));
+		const results = mockPrompts.filter(
+			(p) =>
+				p.name.toLowerCase().includes(query.toLowerCase()) ||
+				p.description.toLowerCase().includes(query.toLowerCase())
+		);
 
 		expect(results).toHaveLength(0);
 	});
